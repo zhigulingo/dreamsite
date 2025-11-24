@@ -4,27 +4,25 @@
     padding: 0;
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
 }
 
 :root {
-    --text-primary: rgba(255, 255, 255, 0.9);
-    --text-secondary: rgba(255, 255, 255, 0.64);
-    --accent-purple: #BF91FF;
-    --bg-color: #05070b;
+    --bg-color: #181029;
+    /* Deep purple/black bg from screenshot */
+    --text-white: #ffffff;
+    --text-gray: rgba(255, 255, 255, 0.7);
+    --accent-purple: #9D6CFF;
+    --btn-purple: #8B63B3;
+    --btn-blue: #0071C8;
 }
 
-html,
 body {
-    width: 100%;
-    min-height: 100%;
     background-color: var(--bg-color);
     font-family: 'Open Sans', sans-serif;
-    color: var(--text-secondary);
+    color: var(--text-white);
     overflow-x: hidden;
 }
 
-/* Canvas Background */
 #space {
     position: fixed;
     top: 0;
@@ -35,323 +33,357 @@ body {
 }
 
 .container {
-    max-width: 1024px;
+    max-width: 1100px;
     margin: 0 auto;
     padding: 0 20px;
-    position: relative;
 }
 
 /* Header */
-.header {
-    position: absolute;
-    top: 0;
+.header-wrapper {
+    position: fixed;
+    top: 20px;
     left: 0;
-    width: 100%;
-    padding: 40px 0;
+    right: 0;
     z-index: 100;
+    display: flex;
+    justify-content: center;
 }
 
-.header .container {
+.header {
+    background: rgba(20, 15, 35, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 50px;
+    padding: 10px 30px;
+    width: 90%;
+    max-width: 1100px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .logo {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 10px;
     text-decoration: none;
+    color: white;
+    font-size: 20px;
+    font-weight: 300;
 }
 
 .logo img {
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
-}
-
-.logo span {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 20px;
-    color: var(--text-primary);
-    font-weight: 300;
-    letter-spacing: -0.5px;
 }
 
 .nav {
     display: flex;
-    gap: 20px;
+    gap: 40px;
     align-items: center;
 }
 
-.nav-link {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 16px;
-    color: var(--text-secondary);
+.nav a {
+    color: rgba(255, 255, 255, 0.8);
     text-decoration: none;
+    font-size: 16px;
     transition: color 0.3s;
 }
 
-.nav-link:hover {
-    color: var(--text-primary);
+.nav a:hover {
+    color: white;
 }
 
-.btn-open {
-    background: rgba(213, 163, 255, 0.2);
-    color: var(--text-primary);
-    padding: 10px 24px;
+.btn-header {
+    background: var(--btn-purple);
+    color: white;
+    padding: 10px 30px;
     border-radius: 30px;
     text-decoration: none;
-    transition: background 0.3s;
-}
-
-.btn-open:hover {
-    background: rgba(213, 163, 255, 0.4);
-}
-
-/* Hamburger */
-.hamburger {
-    display: none;
-    flex-direction: column;
-    gap: 6px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    z-index: 101;
-}
-
-.hamburger span {
-    width: 24px;
-    height: 2px;
-    background: var(--text-primary);
-    transition: 0.3s;
-}
-
-/* Mobile Menu */
-.mobile-menu {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.95);
-    z-index: 99;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 30px;
-    opacity: 0;
-    pointer-events: none;
+    font-weight: 500;
     transition: opacity 0.3s;
 }
 
-.mobile-menu.active {
-    opacity: 1;
-    pointer-events: all;
+.btn-header:hover {
+    opacity: 0.9;
 }
 
-.mobile-menu a {
-    font-size: 24px;
-    color: var(--text-primary);
-    text-decoration: none;
+/* Hero Section */
+.hero {
+    padding-top: 160px;
+    text-align: center;
+    padding-bottom: 100px;
 }
 
-/* Typography & Layout */
 h1 {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 700;
-    font-size: 56px;
+    font-family: 'Open Sans', sans-serif;
+    /* Looks like Open Sans in screenshot */
+    font-weight: 400;
+    font-size: 64px;
     line-height: 1.1;
-    color: var(--text-primary);
-    margin-bottom: 30px;
-}
-
-h2 {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 700;
-    font-size: 48px;
-    line-height: 1.2;
-    color: var(--text-primary);
     margin-bottom: 40px;
 }
 
-h3 {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 400;
-    font-size: 24px;
-    color: var(--accent-purple);
-    margin-bottom: 15px;
-}
-
-p {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 18px;
-    line-height: 1.6;
-    color: var(--text-secondary);
-    margin-bottom: 20px;
-}
-
-/* Sections */
-section {
-    padding: 100px 0;
-    position: relative;
-}
-
-/* Hero */
-.hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    padding-top: 150px;
-}
-
-.hero-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: center;
-}
-
-.hero-img {
-    width: 100%;
-    max-width: 380px;
-    display: block;
-    margin: 0 auto;
-    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.5));
-}
-
-.btn-main {
+.pill-btn {
     display: inline-block;
-    background: #0071C8;
-    color: white;
-    font-family: 'Fira Sans', sans-serif;
-    font-size: 18px;
-    padding: 16px 40px;
+    border: 2px solid #6c5ce7;
+    /* Purple border */
+    background: rgba(108, 92, 231, 0.1);
+    padding: 12px 30px;
     border-radius: 50px;
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 60px;
     text-decoration: none;
-    margin-top: 30px;
-    transition: transform 0.2s, background 0.2s;
 }
 
-.btn-main:hover {
-    background: #0080FF;
+/* Phones Composition */
+.phones-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    /* Align tops */
+    gap: 30px;
+    margin-bottom: 60px;
+    position: relative;
+    height: 600px;
+    /* Limit height to show cut-off effect if needed, or auto */
+    overflow: hidden;
+    /* If we want to cut them off, but user said "first section text and half phones" */
+}
+
+/* We will use a mask or just layout for the "cut off" effect if needed, 
+   but usually scrolling reveals the rest. 
+   User said: "first consists of two: text and half phones, second - phones and button"
+   This implies the phones bridge the two sections visually.
+*/
+
+.phone {
+    width: 280px;
+    border-radius: 40px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    border: 4px solid #2a2a2a;
+    /* Fake bezel */
+}
+
+.phone.center {
+    width: 300px;
+    z-index: 2;
+    margin-top: 0;
+}
+
+.phone.side {
+    margin-top: 80px;
+    /* Push side phones down */
+    opacity: 0.9;
+    transform: scale(0.95);
+}
+
+.btn-telegram {
+    display: inline-block;
+    background: var(--btn-blue);
+    color: white;
+    padding: 18px 40px;
+    border-radius: 50px;
+    font-size: 18px;
+    text-decoration: none;
+    font-weight: 500;
+    margin-top: 20px;
+    transition: transform 0.2s;
+}
+
+.btn-telegram:hover {
     transform: translateY(-2px);
+    background: #0080FF;
 }
 
-/* Feature Rows */
-.feature-row {
+/* Features */
+.features {
+    padding: 100px 0;
+}
+
+.section-title {
+    font-size: 56px;
+    font-weight: 600;
+    margin-bottom: 80px;
+    text-align: left;
+    /* Screenshot shows left align for "Функции приложения" */
+}
+
+.features-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
-    margin-bottom: 150px;
+    gap: 60px 40px;
 }
 
-.feature-row.reverse {
-    direction: rtl;
-}
-
-.feature-row.reverse .feature-content {
-    direction: ltr;
-}
-
-.feature-content {
-    max-width: 450px;
+.feature-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
 }
 
 .feature-icon {
-    width: 60px;
-    height: 60px;
-    margin-bottom: 20px;
-    object-fit: contain;
+    width: 64px;
+    height: 64px;
+    margin-bottom: 24px;
+    /* Filter to make white icons purple if needed, or use original images */
+    /* filter: invert(66%) sepia(61%) saturate(4644%) hue-rotate(228deg) brightness(100%) contrast(101%); */
 }
 
-.feature-img {
-    width: 100%;
-    max-width: 300px;
-    border-radius: 20px;
-    display: block;
-    margin: 0 auto;
-}
-
-/* Philosophy Section */
-.philosophy {
-    text-align: left;
-    padding: 150px 0;
-}
-
-.philosophy h2 {
-    font-size: 56px;
-    max-width: 800px;
-    margin-bottom: 40px;
-}
-
-.philosophy p {
+.feature-title {
     font-size: 24px;
-    max-width: 700px;
-    color: var(--text-secondary);
+    color: #BF91FF;
+    margin-bottom: 16px;
+    font-weight: 600;
 }
 
-/* CTA / Footer Area */
-.cta-area {
-    background: rgba(0, 0, 0, 0.4);
-    border-radius: 40px;
-    padding: 80px 60px;
-    margin-bottom: 60px;
+.feature-desc {
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.5;
 }
 
-.cta-title {
-    font-size: 32px;
-    color: var(--text-primary);
-    margin-bottom: 20px;
+/* Philosophy */
+.philosophy {
+    padding: 100px 0;
 }
 
-.footer {
-    padding: 40px 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+.philosophy-text {
+    font-size: 56px;
+    line-height: 1.2;
+    font-weight: 400;
+}
+
+.philosophy-text span {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* How It Works */
+.how-it-works {
+    padding: 100px 0;
+}
+
+.cards-container {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 14px;
+    flex-direction: column;
+    gap: 30px;
 }
 
-/* Responsive */
-@media (max-width: 900px) {
+.dark-card {
+    background: rgba(40, 30, 60, 0.6);
+    /* Dark purple tint */
+    border-radius: 30px;
+    padding: 60px;
+    text-align: left;
+}
 
-    .hero-grid,
-    .feature-row {
+.card-title {
+    font-size: 32px;
+    color: #BF91FF;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.card-desc {
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+    max-width: 800px;
+}
+
+/* Waitlist Form */
+.waitlist {
+    padding: 100px 0;
+    text-align: center;
+}
+
+.waitlist-container {
+    background: rgba(157, 108, 255, 0.1);
+    border-radius: 40px;
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    max-width: 600px;
+}
+
+.input-email {
+    flex: 1;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 15px 0;
+    color: white;
+    font-size: 18px;
+    outline: none;
+}
+
+.input-email::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.btn-submit {
+    background: transparent;
+    border: 1px solid white;
+    color: white;
+    padding: 12px 30px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s;
+}
+
+.btn-submit:hover {
+    background: white;
+    color: black;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 40px;
+    }
+
+    .phones-container {
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+    }
+
+    .phone.side {
+        margin-top: 20px;
+        transform: none;
+    }
+
+    .features-grid {
         grid-template-columns: 1fr;
-        gap: 40px;
-        text-align: center;
     }
 
-    .feature-row.reverse {
-        direction: ltr;
-    }
-
-    .feature-content {
-        margin: 0 auto;
+    .header {
+        width: 95%;
+        padding: 10px 20px;
     }
 
     .nav {
         display: none;
     }
 
-    .hamburger {
-        display: flex;
-    }
-
-    h1 {
-        font-size: 40px;
-    }
-
-    h2 {
+    .philosophy-text {
         font-size: 32px;
     }
 
-    .hero {
-        padding-top: 120px;
-        min-height: auto;
+    .form-row {
+        flex-direction: column;
     }
 }
