@@ -10,18 +10,20 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Roboto:wght@400;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400&family=Open+Sans:wght@300;400;600;700&family=Roboto:wght@400;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <!-- Canvas Background -->
+    <canvas id="space"></canvas>
+
     <!-- Header / Navigation -->
     <header class="header">
         <div class="container">
             <div class="logo">
-                <img src="image/logo.png" alt="DreamsТут продолжение файла завтра!
-Talk Logo" class="logo-img">
+                <img src="image/logo.png" alt="Dreams Talk Logo" class="logo-img">
                 <span class="logo-text">Dreams Talk</span>
             </div>
             <nav class="nav">
@@ -48,10 +50,10 @@ Talk Logo" class="logo-img">
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1 class="hero-title">Интеллектуальный дневник снов</h1>
-                <p class="hero-subtitle">AI анализ основанный на научном и психоаналитическом подходе</p>
+                <h1 class="hero-title">Умный AI анализ сна с научным и психоаналитическом подходом</h1>
+                <p class="hero-subtitle">Интеллектуальный дневник снов</p>
                 <a href="http://t.me/dreamstalkbot" class="btn-large" target="_blank">
-                    Send a dream
+                    Открыть в Телеграм
                 </a>
             </div>
             <div class="hero-image">
@@ -67,78 +69,93 @@ Talk Logo" class="logo-img">
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <img src="image/brain.png" alt="Dream Interpretation">
+                        <img src="image/brain.png" alt="Interpretation">
                     </div>
-                    <h3 class="feature-title">Интерпретация снов</h3>
+                    <h3 class="feature-title">Умный анализ снов</h3>
                     <p class="feature-description">
-                        AI анализирует ваши сны, используя научные и психоаналитические подходы для глубокого понимания
+                        Приложение использует психоаналитические и научные методы для расшифровки содержания сна: от
+                        контент-анализа до архетипических сюжетов.
                     </p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <img src="image/chart.png" alt="Sleep Analysis">
+                        <img src="image/chart.png" alt="Statistics">
                     </div>
-                    <h3 class="feature-title">Анализ сна</h3>
+                    <h3 class="feature-title">Личная статистика сна</h3>
                     <p class="feature-description">
-                        Отслеживайте паттерны и тенденции в ваших снах с помощью визуализации данных
+                        Визуальные графики эмоций, персонажей, действий и сцен позволяют увидеть, как меняются ваши
+                        внутренние состояния и темы сновидений.
                     </p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <img src="image/pattern.png" alt="Pattern Recognition">
+                        <img src="image/pattern.png" alt="Patterns">
                     </div>
-                    <h3 class="feature-title">Распознавание паттернов</h3>
+                    <h3 class="feature-title">Повторяющиеся символы и темы</h3>
                     <p class="feature-description">
-                        Обнаруживайте повторяющиеся темы и символы в ваших снах для лучшего самопознания
+                        DreamsTalk автоматически находит общие мотивы в ваших снах и показывает динамику их появления во
+                        времени.
                     </p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <img src="image/self.png" alt="Lucid Dreaming">
+                        <img src="image/self.png" alt="Self Knowledge">
                     </div>
-                    <h3 class="feature-title">Гайд по осознанным сновидениям</h3>
+                    <h3 class="feature-title">Сновидения как инструмент самопознания</h3>
                     <p class="feature-description">
-                        Техники и советы для достижения осознанных сновидений и контроля над снами
+                        Приложение помогает использовать сны для личностного роста, терапии и креативных инсайтов.
                     </p>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Philosophy Section (Large Text) -->
+    <section class="philosophy" style="padding: 100px 0; text-align: center;">
+        <div class="container">
+            <h2
+                style="font-size: 48px; font-weight: 400; color: rgba(255,255,255,0.9); line-height: 1.2; margin-bottom: 40px;">
+                Dreams Talk раскрывает язык бессознательного.
+            </h2>
+            <p style="font-size: 24px; color: var(--text-muted); max-width: 800px; margin: 0 auto;">
+                Анализируя символы, эмоции и сюжеты, приложение превращает сновидения в источник понимания себя и
+                вдохновения для перемен.
+            </p>
+        </div>
+    </section>
+
     <!-- How It Works Section -->
     <section id="how-it-works" class="how-it-works">
         <div class="container">
-            <h2 class="section-title">Как это работает?</h2>
+            <h2 class="section-title">Как это работает</h2>
             <div class="steps-grid">
+                <!-- Step 1 -->
                 <div class="step-card">
-                    <div class="step-number">1</div>
-                    <div class="step-image">
-                        <img src="image/screen2.png" alt="Record Your Dream" class="screen-img-small">
+                    <div class="step-content">
+                        <h3 class="step-title">Понимай логику сна</h3>
+                        <p class="step-description">
+                            Научный анализ помогает увидеть сновидение как отражение работы мозга и эмоций. Dreams Talk
+                            исследует структуру сна — персонажей, сцены, действия и чувства — чтобы показать, как
+                            психика перерабатывает дневной опыт.
+                        </p>
                     </div>
-                    <h3 class="step-title">Запишите сон</h3>
-                    <p class="step-description">
-                        Откройте бот в Telegram и опишите свой сон текстом или голосовым сообщением
-                    </p>
+                    <div class="step-image">
+                        <img src="image/screen2.png" alt="Logic of Dreams">
+                    </div>
                 </div>
+                <!-- Step 2 -->
                 <div class="step-card">
-                    <div class="step-number">2</div>
-                    <div class="step-image">
-                        <img src="image/screen3.png" alt="AI Analysis" class="screen-img-small">
+                    <div class="step-content">
+                        <h3 class="step-title">Чувствуй язык бессознательного</h3>
+                        <p class="step-description">
+                            Психоаналитический анализ раскрывает скрытые смыслы, символы и архетипы, через которые
+                            проявляется внутренний мир. Dreams Talk помогает услышать истории, что разворачиваются во
+                            сне.
+                        </p>
                     </div>
-                    <h3 class="step-title">Получите анализ</h3>
-                    <p class="step-description">
-                        AI анализирует ваш сон и предоставляет детальную интерпретацию с символами и значениями
-                    </p>
-                </div>
-                <div class="step-card">
-                    <div class="step-number">3</div>
                     <div class="step-image">
-                        <img src="image/screen1.png" alt="Track Progress" class="screen-img-small">
+                        <img src="image/screen3.png" alt="Unconscious Language">
                     </div>
-                    <h3 class="step-title">Отслеживайте прогресс</h3>
-                    <p class="step-description">
-                        Ведите дневник снов и наблюдайте за паттернами в вашем подсознании
-                    </p>
                 </div>
             </div>
         </div>
@@ -147,11 +164,14 @@ Talk Logo" class="logo-img">
     <!-- CTA Section -->
     <section class="cta">
         <div class="container">
-            <h2 class="cta-title">Начните анализировать свои сны сегодня</h2>
-            <p class="cta-subtitle">Откройте для себя скрытые значения ваших снов с помощью AI</p>
-            <a href="http://t.me/dreamstalkbot" class="btn-large" target="_blank">
-                Попробовать бесплатно
-            </a>
+            <div class="cta-container">
+                <h2 class="cta-title">Следи за новостями в сообществе, чтобы не пропустить релиз</h2>
+                <p class="cta-subtitle">Или оставь свою почту, чтобы получить уведомление когда приложение запустится.
+                </p>
+                <a href="http://t.me/dreamstalkbot" class="btn-large" target="_blank">
+                    Подписаться
+                </a>
+            </div>
         </div>
     </section>
 
@@ -175,6 +195,7 @@ Talk Logo" class="logo-img">
         </div>
     </footer>
 
+    <script src="background.js"></script>
     <script src="script.js"></script>
 </body>
 
