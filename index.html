@@ -357,18 +357,47 @@
       (function () {
         console.log("Antigravity: Controller Loaded");
 
+        // --- Viewport Fix for Mobile ---
+        let viewport = document.querySelector('meta[name="viewport"]');
+        if (!viewport) {
+          viewport = document.createElement('meta');
+          viewport.name = "viewport";
+          document.head.appendChild(viewport);
+        }
+        viewport.content = "width=device-width, initial-scale=1, viewport-fit=cover";
+
         // --- CSS Fixes ---
         const style = document.createElement('style');
         style.innerHTML = `
-          /* Force scrollability */
+          /* Force scrollability and full height */
+          html {
+            height: 100%;
+            overflow-y: scroll; /* Always show scrollbar track to avoid layout shift */
+            -webkit-overflow-scrolling: touch;
+          }
+          body {
+            min-height: 100%;
+            overflow-y: auto;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+            /* Ensure background covers the whole area if needed */
+          }
+          
+          /* Hide scrollbars but allow scrolling */
+          html::-webkit-scrollbar, body::-webkit-scrollbar { 
+            display: none; 
+          }
           html, body {
-            overflow-y: auto !important;
-            height: auto !important;
             scrollbar-width: none; /* Firefox */
             -ms-overflow-style: none;  /* IE 10+ */
           }
-          html::-webkit-scrollbar, body::-webkit-scrollbar { 
-            display: none; /* Chrome/Safari */
+
+          /* Prevent images from blocking scroll */
+          img {
+            pointer-events: none !important;
+            user-select: none !important;
+            -webkit-user-drag: none !important;
           }
           
           /* Hide Hamburger on Desktop */
@@ -377,13 +406,27 @@
               display: none !important;
             }
           }
+
+          /* Mobile Hamburger Size Fix */
+          @media (max-width: 767px) {
+            [data-id="68fba8f11346ffe9b3340281"] {
+              width: 40px !important; /* Adjust to match app icon size */
+              height: auto !important;
+              top: 20px !important; /* Adjust position if needed */
+              right: 20px !important;
+            }
+            [data-id="68fba8f11346ffe9b3340281"] svg {
+              width: 100% !important;
+              height: 100% !important;
+            }
+          }
         `;
         document.head.appendChild(style);
 
         const CONFIG = {
           snapPoints: [0, 450, 873, 1702, 2229, 2984],
           icons: {
-            '68fb0c6dcf783146285105a7': `<img src="https://c-p.rmcdn1.net/6387856cfb876d0024db621b/664e41af9e979700634d9be4/RasterizedImage-a4adb6cc-cd55-4517-bb4d-d030b8c4b36b.png" style="width: 100%; height: 100%; object-fit: contain; pointer-events: none;">`, // Brain
+            '68fb0c6dcf783146285105a7': `<img src="https://c-p.rmcdn1.net/6387856cfb876d0024db621b/664e41af9e979700634d9be4/RasterizedImage-a4adb6cc-cd55-4517-bb4d-d030b8c458d8.png" style="width: 100%; height: 100%; object-fit: contain; pointer-events: none;">`, // Brain
             '68fb0f3e269f267446c95b8d': `<img src="https://c-p.rmcdn1.net/6387856cfb876d0024db621b/664e41af9e979700634d9be4/RasterizedImage-0091bb70-529e-4747-a548-ca311d2f721e.png" style="width: 100%; height: 100%; object-fit: contain; pointer-events: none;">`, // Chart
             '68fb0f1c8a6d8cb2b70aee2f': `<img src="https://c-p.rmcdn1.net/6387856cfb876d0024db621b/664e41af9e979700634d9be4/RasterizedImage-01999755-5dfb-429b-984f-bb5bdaaef2e5.png" style="width: 100%; height: 100%; object-fit: contain; pointer-events: none;">`, // Layers
             '68fb0f9dc31a5d873d69fbcf': `<img src="https://c-p.rmcdn1.net/6387856cfb876d0024db621b/664e41af9e979700634d9be4/RasterizedImage-e502d31c-d0d8-4712-a74a-c21e0cb458d8.png" style="width: 100%; height: 100%; object-fit: contain; pointer-events: none;">`, // Head
@@ -434,6 +477,10 @@
                 if (widget.parentElement) {
                   // widget.parentElement.style.pointerEvents = 'none'; // Risky if parent has other content
                 }
+              } else {
+                // Ensure hamburger is clickable
+                widget.style.pointerEvents = 'auto';
+                widget.style.cursor = 'pointer';
               }
 
               iconsReplaced++;
