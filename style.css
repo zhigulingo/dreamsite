@@ -8,7 +8,6 @@
 
 :root {
     --bg-color: #181029;
-    /* Deep purple/black bg from screenshot */
     --text-white: #ffffff;
     --text-gray: rgba(255, 255, 255, 0.7);
     --accent-purple: #9D6CFF;
@@ -16,26 +15,52 @@
     --btn-blue: #0071C8;
 }
 
+html {
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    height: 100%;
+    overflow-y: scroll;
+}
+
 body {
     background-color: var(--bg-color);
+    /* Fallback */
     font-family: 'Open Sans', sans-serif;
     color: var(--text-white);
     overflow-x: hidden;
+    margin: 0;
 }
 
+/* Canvas Background - Fixed & Fullscreen */
 #space {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     z-index: -1;
+    pointer-events: none;
+    /* Пропускает клики */
 }
 
 .container {
     max-width: 1100px;
     margin: 0 auto;
     padding: 0 20px;
+    position: relative;
+    z-index: 2;
+}
+
+/* Sections - Snap Logic */
+section {
+    scroll-snap-align: start;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    padding: 80px 0;
+    /* Отступы чтобы контент не прилипал */
 }
 
 /* Header */
@@ -50,17 +75,18 @@ body {
 }
 
 .header {
-    background: rgba(20, 15, 35, 0.6);
+    background: rgba(20, 15, 35, 0.7);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-radius: 50px;
-    padding: 10px 30px;
+    padding: 12px 30px;
     width: 90%;
     max-width: 1100px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 .logo {
@@ -112,32 +138,33 @@ body {
 
 /* Hero Section */
 .hero {
-    padding-top: 160px;
+    justify-content: flex-start;
+    /* Начинаем сверху */
+    padding-top: 140px;
+    /* Отступ под хедер */
     text-align: center;
-    padding-bottom: 100px;
 }
 
 h1 {
     font-family: 'Open Sans', sans-serif;
-    /* Looks like Open Sans in screenshot */
     font-weight: 400;
     font-size: 64px;
     line-height: 1.1;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 }
 
 .pill-btn {
     display: inline-block;
     border: 2px solid #6c5ce7;
-    /* Purple border */
-    background: rgba(108, 92, 231, 0.1);
-    padding: 12px 30px;
+    background: rgba(108, 92, 231, 0.15);
+    padding: 10px 24px;
     border-radius: 50px;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 600;
     color: white;
-    margin-bottom: 60px;
+    margin-bottom: 40px;
     text-decoration: none;
+    backdrop-filter: blur(5px);
 }
 
 /* Phones Composition */
@@ -145,54 +172,46 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    /* Align tops */
-    gap: 30px;
-    margin-bottom: 60px;
+    gap: 20px;
+    margin-bottom: 40px;
     position: relative;
-    height: 600px;
-    /* Limit height to show cut-off effect if needed, or auto */
-    overflow: hidden;
-    /* If we want to cut them off, but user said "first section text and half phones" */
+    /* Phones overlap logic */
 }
 
-/* We will use a mask or just layout for the "cut off" effect if needed, 
-   but usually scrolling reveals the rest. 
-   User said: "first consists of two: text and half phones, second - phones and button"
-   This implies the phones bridge the two sections visually.
-*/
-
 .phone {
-    width: 280px;
+    width: 260px;
     border-radius: 40px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-    border: 4px solid #2a2a2a;
-    /* Fake bezel */
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+    /* No border as requested */
+    transition: transform 0.3s ease;
 }
 
 .phone.center {
-    width: 300px;
-    z-index: 2;
+    width: 280px;
+    z-index: 10;
     margin-top: 0;
 }
 
 .phone.side {
-    margin-top: 80px;
-    /* Push side phones down */
+    margin-top: 60px;
+    /* Сдвиг боковых вниз */
     opacity: 0.9;
     transform: scale(0.95);
+    z-index: 5;
 }
 
 .btn-telegram {
     display: inline-block;
     background: var(--btn-blue);
     color: white;
-    padding: 18px 40px;
+    padding: 16px 36px;
     border-radius: 50px;
     font-size: 18px;
     text-decoration: none;
     font-weight: 500;
-    margin-top: 20px;
+    box-shadow: 0 10px 20px rgba(0, 113, 200, 0.3);
     transition: transform 0.2s;
+    margin-bottom: 40px;
 }
 
 .btn-telegram:hover {
@@ -202,21 +221,20 @@ h1 {
 
 /* Features */
 .features {
-    padding: 100px 0;
+    /* Snap align handled by section rule */
 }
 
 .section-title {
     font-size: 56px;
     font-weight: 600;
-    margin-bottom: 80px;
+    margin-bottom: 60px;
     text-align: left;
-    /* Screenshot shows left align for "Функции приложения" */
 }
 
 .features-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 60px 40px;
+    gap: 50px 40px;
 }
 
 .feature-item {
@@ -227,35 +245,36 @@ h1 {
 }
 
 .feature-icon {
-    width: 64px;
-    height: 64px;
-    margin-bottom: 24px;
-    /* Filter to make white icons purple if needed, or use original images */
-    /* filter: invert(66%) sepia(61%) saturate(4644%) hue-rotate(228deg) brightness(100%) contrast(101%); */
+    width: 56px;
+    height: 56px;
+    margin-bottom: 20px;
+    object-fit: contain;
 }
 
 .feature-title {
-    font-size: 24px;
+    font-size: 22px;
     color: #BF91FF;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
     font-weight: 600;
 }
 
 .feature-desc {
-    font-size: 18px;
+    font-size: 16px;
     color: rgba(255, 255, 255, 0.8);
     line-height: 1.5;
 }
 
 /* Philosophy */
 .philosophy {
-    padding: 100px 0;
+    align-items: center;
+    text-align: center;
 }
 
 .philosophy-text {
-    font-size: 56px;
-    line-height: 1.2;
+    font-size: 48px;
+    line-height: 1.3;
     font-weight: 400;
+    max-width: 900px;
 }
 
 .philosophy-text span {
@@ -264,7 +283,7 @@ h1 {
 
 /* How It Works */
 .how-it-works {
-    padding: 100px 0;
+    /* Snap align handled by section rule */
 }
 
 .cards-container {
@@ -274,17 +293,19 @@ h1 {
 }
 
 .dark-card {
-    background: rgba(40, 30, 60, 0.6);
-    /* Dark purple tint */
+    background: rgba(30, 20, 50, 0.7);
+    /* Более прозрачный и темный */
+    border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 30px;
-    padding: 60px;
+    padding: 50px;
     text-align: left;
+    backdrop-filter: blur(10px);
 }
 
 .card-title {
-    font-size: 32px;
+    font-size: 28px;
     color: #BF91FF;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     font-weight: 600;
 }
 
@@ -292,30 +313,30 @@ h1 {
     font-size: 18px;
     color: rgba(255, 255, 255, 0.9);
     line-height: 1.6;
-    max-width: 800px;
 }
 
-/* Waitlist Form */
+/* Waitlist */
 .waitlist {
-    padding: 100px 0;
-    text-align: center;
+    justify-content: center;
 }
 
 .waitlist-container {
-    background: rgba(157, 108, 255, 0.1);
+    background: rgba(157, 108, 255, 0.08);
+    border: 1px solid rgba(157, 108, 255, 0.1);
     border-radius: 40px;
     padding: 60px;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 30px;
+    backdrop-filter: blur(10px);
 }
 
 .form-row {
     display: flex;
     gap: 20px;
     width: 100%;
-    max-width: 600px;
+    max-width: 500px;
 }
 
 .input-email {
@@ -323,7 +344,7 @@ h1 {
     background: transparent;
     border: none;
     border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-    padding: 15px 0;
+    padding: 12px 0;
     color: white;
     font-size: 18px;
     outline: none;
@@ -349,23 +370,35 @@ h1 {
     color: black;
 }
 
+/* Footer */
+.footer {
+    padding: 30px 0;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 14px;
+    /* Footer is not a full section, so no snap align needed usually, or snap to end */
+    scroll-snap-align: end;
+}
+
 /* Mobile */
 @media (max-width: 768px) {
     h1 {
-        font-size: 40px;
+        font-size: 36px;
     }
 
     .phones-container {
         flex-direction: column;
+        /* Stack phones on mobile? Or scale down? */
         align-items: center;
-        height: auto;
+        transform: scale(0.8);
+        margin-bottom: 0;
     }
 
     .phone.side {
-        margin-top: 20px;
-        transform: none;
+        margin-top: -40px;
     }
 
+    /* Overlap vertically */
     .features-grid {
         grid-template-columns: 1fr;
     }
@@ -380,10 +413,17 @@ h1 {
     }
 
     .philosophy-text {
-        font-size: 32px;
+        font-size: 28px;
     }
 
     .form-row {
         flex-direction: column;
     }
+
+    section {
+        padding: 60px 0;
+        min-height: auto;
+    }
+
+    /* Disable full height snap on mobile if content is too long */
 }
