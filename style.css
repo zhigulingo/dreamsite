@@ -418,23 +418,57 @@ h1 {
 
 /* Mobile */
 @media (max-width: 768px) {
+
+    /* Fix iOS safe areas */
+    body {
+        padding-top: env(safe-area-inset-top);
+        padding-bottom: env(safe-area-inset-bottom);
+        min-height: 100vh;
+        min-height: -webkit-fill-available;
+    }
+
+    html {
+        height: -webkit-fill-available;
+    }
+
     h1 {
-        font-size: 36px;
+        font-size: 32px;
+        line-height: 1.3;
+        /* Better readability on mobile */
+        margin-bottom: 20px;
     }
 
     .phones-container {
-        flex-direction: column;
-        align-items: center;
-        transform: scale(0.8);
-        margin-bottom: 0;
+        flex-direction: row;
+        /* Keep phones in a row but smaller */
+        justify-content: center;
+        gap: 12px;
+        transform: scale(0.7);
+        margin-bottom: 20px;
+        margin-top: 20px;
+    }
+
+    .phone {
+        width: 240px;
+    }
+
+    .phone.center {
+        width: 260px;
+        margin-top: -10px;
     }
 
     .phone.side {
-        margin-top: -40px;
+        margin-top: 30px;
     }
 
     .features-grid {
         grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .feature-desc {
+        line-height: 1.7;
+        /* Better spacing for readability */
     }
 
     .header {
@@ -446,8 +480,32 @@ h1 {
         display: none;
     }
 
+    .hamburger {
+        display: flex;
+        /* Show hamburger on mobile */
+    }
+
     .philosophy-text {
+        font-size: 24px;
+        line-height: 1.5;
+        /* Improved readability */
+    }
+
+    .section-title {
         font-size: 28px;
+        line-height: 1.3;
+        margin-bottom: 30px;
+    }
+
+    .card-title {
+        font-size: 22px;
+        line-height: 1.4;
+    }
+
+    .card-desc {
+        font-size: 16px;
+        line-height: 1.7;
+        /* Better readability */
     }
 
     .form-row {
@@ -462,10 +520,18 @@ h1 {
     .hero {
         align-items: center;
         text-align: center;
+        padding-top: 100px;
     }
 
-    /* На мобильном лучше центр */
     .hero .container {
         align-items: center;
+    }
+
+    .pill-btn {
+        display: block;
+        /* Make pill separate element on mobile */
+        margin: 20px auto 0;
+        font-size: 14px;
+        padding: 8px 20px;
     }
 }

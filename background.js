@@ -104,18 +104,24 @@
             ph: rand(0, Math.PI * 2)
         }));
 
-        // туманности
-        clouds = Array.from({ length: CLOUDS_COUNT }, () => {
-            const c = CLOUDS[Math.floor(Math.random() * CLOUDS.length)];
-            const baseR = rand(0.38, 0.62) * Math.max(W, H);
+        // туманности (с фиксированным сидом для стабильности)
+        const seededRandom = (seed) => {
+            let x = Math.sin(seed++) * 10000;
+            return x - Math.floor(x);
+        };
+
+        clouds = Array.from({ length: CLOUDS_COUNT }, (_, i) => {
+            const c = CLOUDS[Math.floor(seededRandom(i * 7) * CLOUDS.length)];
+            const baseR = (0.38 + seededRandom(i * 11) * 0.24) * Math.max(W, H);
             const a = rand(CLOUD_DRIFT[0], CLOUD_DRIFT[1]);
-            const ang = rand(0, Math.PI * 2);
+            const ang = seededRandom(i * 13) * Math.PI * 2;
             return {
-                ux: Math.random(), uy: Math.random(),
+                ux: seededRandom(i * 17) * 0.7 + 0.15, // Keep within visible area
+                uy: seededRandom(i * 19) * 0.6 + 0.1,
                 vx: Math.cos(ang) * a * 0.25, vy: Math.sin(ang) * a * 0.25,
                 r: baseR, col: c.slice(0, 3), a0: c[3],
-                drift: rand(0.02, 0.05), ph: rand(0, Math.PI * 2),
-                depth: rand(0.15, 0.85)
+                drift: rand(0.02, 0.05), ph: seededRandom(i * 23) * Math.PI * 2,
+                depth: 0.15 + seededRandom(i * 29) * 0.7
             };
         });
 
