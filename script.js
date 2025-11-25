@@ -80,16 +80,36 @@ if (emailForm) {
         }
 
         try {
-            // Save to localStorage
+            // Save to localStorage as fallback
             const emails = JSON.parse(localStorage.getItem('dreamstalk_emails') || '[]');
 
-            // Check if email already exists
+            // Check if email already exists locally
             if (emails.includes(email)) {
                 showMessage('Этот email уже зарегистрирован!', 'error');
                 return;
             }
 
-            // Add new email
+            // Send to backend API
+            try {
+                const response = await fetch('/api/subscribe', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok || !data.success) {
+                    throw new Error(data.error || 'Failed to subscribe');
+                }
+
+                console.log('Successfully sent to backend:', data);
+            } catch (apiError) {
+                // If API fails, we'll still save locally
+                console.warn('Backend API unavailable, saved locally only:', apiError);
+            }
+
+            // Add to localStorage
             emails.push(email);
             localStorage.setItem('dreamstalk_emails', JSON.stringify(emails));
 
@@ -98,13 +118,6 @@ if (emailForm) {
 
             // Clear input
             emailInput.value = '';
-
-            // Optional: Send to backend (uncomment when ready)
-            // await fetch('/api/subscribe', {
-            //     method: 'POST',
-            //     headers: { 'Content-Type': 'application/json' },
-            //     body: JSON.stringify({ email })
-            // });
 
         } catch (error) {
             showMessage('Произошла ошибка. Попробуйте позже', 'error');
