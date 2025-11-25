@@ -1,6 +1,7 @@
-// Vercel Serverless Function для обработки подписок
-// Этот файл автоматически станет API endpoint: /api/subscribe
+import { sql } from '@vercel/postgres';
 
+// Vercel Serverless Function для обработки подписок
+// Использует Vercel Postgres для хранения emails
 export default async function handler(req, res) {
     // Разрешаем только POST запросы
     if (req.method !== 'POST') {
@@ -29,78 +30,106 @@ export default async function handler(req, res) {
             });
         }
 
-        // Получаем текущую дату для логирования
-        const timestamp = new Date().toISOString();
+        // Получаем метаданные
         const userAgent = req.headers['user-agent'] || 'Unknown';
-        const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+        const ip = req.headers['x-forwarded-for'] || req.headers['x-real-ip'] || 'Unknown';
+        const referrer = req.headers['referer'] || req.headers['referrer'] || 'Direct';
 
-        // Формируем данные подписки
-        const subscriptionData = {
-            email,
-            timestamp,
-            ip,
-            userAgent
-        };
+        // Создаём таблицу если её нет (автоматически при первом запросе)
+        await sql`
+            CREATE TABLE IF NOT EXISTS subscriptions (
+                id SERIAL PRIMARY KEY,
+                email VARCHAR(255) UNIQUE NOT NULL,
+                subscribed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                ip VARCHAR(100),
+                user_agent TEXT,
+                referrer TEXT,
+                status VARCHAR(50) DEFAULT 'active'
+            )
+        `;
 
-        // ВАРИАНТ 1: Отправка в Telegram бот (Рекомендую!)
-        // Создайте бот через @BotFather и получите токен
-        // Получите ваш chat_id через @userinfobot
+        // Проверяем дубликаты
+        const existing = await sql`
+            SELECT email FROM subscriptions WHERE email = ${email}
+        `;
+
+        if (existing.rows.length > 0) {
+            return res.status(409).json({
+                success: false,
+                error: 'Email already subscribed'
+            });
+        }
+
+        // Сохраняем в базу данных
+        const result = await sql`
+            INSERT INTO subscriptions (email, ip, user_agent, referrer)
+            VALUES (${email}, ${ip}, ${userAgent}, ${referrer})
+            RETURNING id, email, subscribed_at
+        `;
+
+        const subscription = result.rows[0];
+
+        // Отправка уведомления в Telegram (опционально)
         const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
         const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
 
         if (TELEGRAM_BOT_TOKEN && TELEGRAM_CHAT_ID) {
+            const date = new Date(subscription.subscribed_at);
             const message = `🆕 Новая подписка на DreamsTalk!\n\n` +
                 `📧 Email: ${email}\n` +
-                `🕐 Время: ${new Date(timestamp).toLocaleString('ru-RU')}\n` +
+                `🆔 ID: #${subscription.id}\n` +
+                `🕐 Время: ${date.toLocaleString('ru-RU')}\n` +
                 `🌐 IP: ${ip}\n` +
-                `📱 User Agent: ${userAgent}`;
+                `📱 Referrer: ${referrer}`;
 
-            await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    chat_id: TELEGRAM_CHAT_ID,
-                    text: message,
-                    parse_mode: 'HTML'
-                })
-            });
+            try {
+                await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        chat_id: TELEGRAM_CHAT_ID,
+                        text: message
+                    })
+                });
+            } catch (telegramError) {
+                console.error('Telegram notification failed:', telegramError);
+                // Не прерываем выполнение, если Telegram недоступен
+            }
         }
 
-        // ВАРИАНТ 2: Отправка на Email через SendGrid (опционально)
-        // Установите: npm install @sendgrid/mail
-        // const sgMail = require('@sendgrid/mail');
-        // const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY;
-        // const NOTIFICATION_EMAIL = process.env.NOTIFICATION_EMAIL;
-
-        // if (SENDGRID_API_KEY && NOTIFICATION_EMAIL) {
-        //     sgMail.setApiKey(SENDGRID_API_KEY);
-        //     await sgMail.send({
-        //         to: NOTIFICATION_EMAIL,
-        //         from: 'noreply@dreamstalk.app',
-        //         subject: '🆕 Новая подписка DreamsTalk',
-        //         text: `Новая подписка: ${email}`,
-        //         html: `<strong>Email:</strong> ${email}<br><strong>Время:</strong> ${timestamp}`
-        //     });
-        // }
-
-        // ВАРИАНТ 3: Сохранение в Google Sheets (опционально)
-        // Используйте googleapis для интеграции
-
-        // Логируем в консоль Vercel (можно посмотреть в дашборде)
-        console.log('New subscription:', subscriptionData);
+        // Логируем успех
+        console.log('New subscription saved:', {
+            id: subscription.id,
+            email: email,
+            timestamp: subscription.subscribed_at
+        });
 
         // Возвращаем успешный ответ
         return res.status(200).json({
             success: true,
             message: 'Subscription successful',
-            data: { email, timestamp }
+            data: {
+                id: subscription.id,
+                email: subscription.email,
+                subscribed_at: subscription.subscribed_at
+            }
         });
 
     } catch (error) {
         console.error('Subscription error:', error);
+
+        // Проверяем на ошибку дубликата (на случай race condition)
+        if (error.code === '23505') { // PostgreSQL unique violation
+            return res.status(409).json({
+                success: false,
+                error: 'Email already subscribed'
+            });
+        }
+
         return res.status(500).json({
             success: false,
-            error: 'Server error'
+            error: 'Server error',
+            details: process.env.NODE_ENV === 'development' ? error.message : undefined
         });
     }
 }

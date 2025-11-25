@@ -1,0 +1,22 @@
+{
+    "name": "dreamstalk-website",
+    "version": "1.0.0",
+    "description": "DreamsTalk - AI Dream Analysis Landing Page",
+    "type": "module",
+    "scripts": {
+        "dev": "python3 -m http.server 8000",
+        "vercel-build": "echo 'No build step required'"
+    },
+    "dependencies": {
+        "@vercel/postgres": "^0.5.1"
+    },
+    "devDependencies": {},
+    "keywords": [
+        "dreams",
+        "ai",
+        "analysis",
+        "telegram"
+    ],
+    "author": "DreamsTalk Team",
+    "license": "MIT"
+}
