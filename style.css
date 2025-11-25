@@ -17,30 +17,30 @@
 }
 
 html {
-    scroll-snap-type: y mandatory;
-    scroll-behavior: smooth;
     height: 100%;
     min-height: 100%;
-    overflow-y: scroll;
+    margin: 0;
+    padding: 0;
+    overflow-y: auto;
     overflow-x: hidden;
+    /* Remove overscroll-behavior to allow natural bounce with colored background */
+    background: linear-gradient(to bottom, #0f1322 0%, #05070b 50%, #05070b 100%);
 }
 
 body {
-    background-color: var(--bg-color);
+    height: 100%;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    background: transparent;
     font-family: 'Open Sans', sans-serif;
     color: var(--text-white);
     overflow-x: hidden;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    min-height: 100%;
     position: relative;
-    /* For absolute canvas positioning */
 }
 
-/* Canvas Background - Cover entire document */
+/* Canvas Background - Full viewport coverage */
 #space {
-    position: absolute;
     top: 0;
     left: 0;
     right: 0;
