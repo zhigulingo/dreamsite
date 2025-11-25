@@ -61,25 +61,68 @@ function throttle(func, delay) {
     };
 }
 
-// Add scroll effect to header (throttled for performance)
-let lastScroll = 0;
-const header = document.querySelector('.header');
+// Email form submission handler
+const emailForm = document.getElementById('emailForm');
+const emailInput = document.getElementById('emailInput');
+const formMessage = document.getElementById('formMessage');
 
-const handleScroll = throttle(() => {
-    const currentScroll = window.pageYOffset;
+if (emailForm) {
+    emailForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
 
-    if (currentScroll > 100) {
-        header.style.background = 'rgba(0, 0, 0, 0.95)';
-        header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.3)';
-    } else {
-        header.style.background = 'rgba(0, 0, 0, 0.8)';
-        header.style.boxShadow = 'none';
-    }
+        const email = emailInput.value.trim();
 
-    lastScroll = currentScroll;
-}, 100); // Throttle to max once per 100ms
+        // Basic email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            showMessage('Пожалуйста, введите корректный email адрес', 'error');
+            return;
+        }
 
-window.addEventListener('scroll', handleScroll, { passive: true });
+        try {
+            // Save to localStorage
+            const emails = JSON.parse(localStorage.getItem('dreamstalk_emails') || '[]');
+
+            // Check if email already exists
+            if (emails.includes(email)) {
+                showMessage('Этот email уже зарегистрирован!', 'error');
+                return;
+            }
+
+            // Add new email
+            emails.push(email);
+            localStorage.setItem('dreamstalk_emails', JSON.stringify(emails));
+
+            // Show success message
+            showMessage('✓ Спасибо! Ваш email успешно добавлен в список рассылки', 'success');
+
+            // Clear input
+            emailInput.value = '';
+
+            // Optional: Send to backend (uncomment when ready)
+            // await fetch('/api/subscribe', {
+            //     method: 'POST',
+            //     headers: { 'Content-Type': 'application/json' },
+            //     body: JSON.stringify({ email })
+            // });
+
+        } catch (error) {
+            showMessage('Произошла ошибка. Попробуйте позже', 'error');
+            console.error('Form submission error:', error);
+        }
+    });
+}
+
+function showMessage(text, type) {
+    formMessage.textContent = text;
+    formMessage.className = `form-message ${type} show`;
+
+    // Hide message after 5 seconds
+    setTimeout(() => {
+        formMessage.classList.remove('show');
+    }, 5000);
+}
+
 
 // Intersection Observer for fade-in animations - DISABLED to prevent flickering
 // const observerOptions = {

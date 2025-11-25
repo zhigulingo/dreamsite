@@ -142,13 +142,19 @@
         <div class="container">
             <div class="waitlist-container">
                 <h2 style="font-size: 32px; margin-bottom: 10px;">Следи за новостями в сообществе</h2>
-                <p style="color: rgba(255,255,255,0.6); margin-bottom: 20px;">Или оставь свою почту, чтобы получить
-                    уведомление когда приложение запустится.</p>
+                <p style="color: rgba(255,255,255,0.6); margin-bottom: 20px;">
+                    <a href="https://t.me/thedreamshub" target="_blank"
+                        style="color: #9D6CFF; text-decoration: none; font-weight: 500;">t.me/thedreamshub</a>
+                    <br>
+                    Или оставь свою почту, чтобы получить уведомление когда приложение запустится.
+                </p>
 
-                <form class="form-row" action="#" method="POST">
-                    <input type="email" class="input-email" placeholder="Ваш email" required>
+                <form class="form-row" id="emailForm">
+                    <input type="email" class="input-email" id="emailInput" placeholder="Ваш email" required>
                     <button type="submit" class="btn-submit">Подписаться</button>
                 </form>
+
+                <div class="form-message" id="formMessage"></div>
             </div>
         </div>
     </section>
