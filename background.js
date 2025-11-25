@@ -71,9 +71,13 @@
     }
 
     function resize() {
-        const { w, h } = vp(); W = w; H = h;
-        canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
-        // canvas.style.width=W+'px'; canvas.style.height=H+'px'; // Let CSS handle this
+        // Get actual canvas element size
+        const rect = canvas.getBoundingClientRect();
+        const w = Math.round(rect.width || window.innerWidth);
+        const h = Math.round(rect.height || window.innerHeight);
+        W = w; H = h;
+        canvas.width = Math.round(W * dpr);
+        canvas.height = Math.round(H * dpr);
 
         // Seeded random для стабильности между перезагрузками
         const seededRandom = (seed) => {
