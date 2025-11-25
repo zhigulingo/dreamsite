@@ -10,6 +10,8 @@
     <title>Dreams Talk - Интеллектуальный дневник снов</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap"
+        as="style">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -20,7 +22,7 @@
     <div class="header-wrapper">
         <header class="header">
             <a href="#" class="logo">
-                <img src="image/logo.png" alt="Logo">
+                <img src="image/logo.png" alt="Logo" width="32" height="32">
                 <span>Dreams Talk</span>
             </a>
             <nav class="nav">
@@ -54,11 +56,11 @@
 
             <div class="phones-container">
                 <!-- Phone 1 (Left) -->
-                <img src="image/screen1.png" alt="Screen 1" class="phone side">
+                <img src="image/screen1.png" alt="Screen 1" class="phone side" loading="lazy" decoding="async">
                 <!-- Phone 2 (Center) -->
-                <img src="image/screen2.png" alt="Screen 2" class="phone center">
+                <img src="image/screen2.png" alt="Screen 2" class="phone center" loading="eager" decoding="async">
                 <!-- Phone 3 (Right) -->
-                <img src="image/screen3.png" alt="Screen 3" class="phone side">
+                <img src="image/screen3.png" alt="Screen 3" class="phone side" loading="lazy" decoding="async">
             </div>
 
             <a href="http://t.me/dreamstalkbot" class="btn-telegram" target="_blank">Открыть в Телеграм</a>
@@ -71,25 +73,29 @@
             <h2 class="section-title">Функции приложения</h2>
             <div class="features-grid">
                 <div class="feature-item">
-                    <img src="image/brain.png" alt="Brain" class="feature-icon">
+                    <img src="image/brain.png" alt="Brain" class="feature-icon" loading="lazy" decoding="async"
+                        width="56" height="56">
                     <h3 class="feature-title">Умный анализ снов</h3>
                     <p class="feature-desc">Приложение использует психоаналитические и научные методы для расшифровки
                         содержания сна: от контент-анализа до архетипических сюжетов.</p>
                 </div>
                 <div class="feature-item">
-                    <img src="image/chart.png" alt="Chart" class="feature-icon">
+                    <img src="image/chart.png" alt="Chart" class="feature-icon" loading="lazy" decoding="async"
+                        width="56" height="56">
                     <h3 class="feature-title">Личная статистика сна</h3>
                     <p class="feature-desc">Визуальные графики эмоций, персонажей, действий и сцен позволяют увидеть,
                         как меняются ваши внутренние состояния и темы сновидений.</p>
                 </div>
                 <div class="feature-item">
-                    <img src="image/pattern.png" alt="Pattern" class="feature-icon">
+                    <img src="image/pattern.png" alt="Pattern" class="feature-icon" loading="lazy" decoding="async"
+                        width="56" height="56">
                     <h3 class="feature-title">Повторяющиеся символы и темы</h3>
                     <p class="feature-desc">DreamsTalk автоматически находит общие мотивы в ваших снах и показывает
                         динамику их появления во времени.</p>
                 </div>
                 <div class="feature-item">
-                    <img src="image/self.png" alt="Self" class="feature-icon">
+                    <img src="image/self.png" alt="Self" class="feature-icon" loading="lazy" decoding="async" width="56"
+                        height="56">
                     <h3 class="feature-title">Сновидения как инструмент самопознания</h3>
                     <p class="feature-desc">Приложение помогает использовать сны для личностного роста, терапии и
                         креативных инсайтов.</p>

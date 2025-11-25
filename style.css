@@ -42,13 +42,16 @@ body {
     position: relative;
 }
 
-/* Canvas Background - Fixed & Fullscreen */
+/* Canvas Background - Fixed & Extended for Overscroll */
 #space {
     position: fixed;
-    inset: 0;
-    /* Covers entire viewport including safe areas */
+    top: -200px;
+    left: 0;
+    right: 0;
+    bottom: -200px;
     width: 100%;
-    height: 100%;
+    height: auto;
+    /* Let top/bottom define height */
     z-index: -1;
     pointer-events: none;
     background: transparent;
@@ -79,6 +82,9 @@ section {
     padding: 80px 0;
     /* Убираем любые фоны у секций, чтобы не было границ */
     background: transparent;
+    /* Performance: defer rendering of off-screen content */
+    content-visibility: auto;
+    contain-intrinsic-size: auto 100vh;
 }
 
 /* Header */
@@ -104,6 +110,9 @@ section {
     justify-content: space-between;
     align-items: center;
     border: 1px solid rgba(255, 255, 255, 0.08);
+    /* Performance: GPU acceleration */
+    will-change: background, backdrop-filter;
+    transform: translateZ(0);
 }
 
 .logo {

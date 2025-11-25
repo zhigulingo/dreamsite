@@ -1,11 +1,13 @@
 (() => {
     // ===== PERF =====
     const isMobile = /iPhone|iPad|Android/i.test(navigator.userAgent);
+    const isLowEnd = navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4;
     const DPR_CAP = isMobile ? 1.0 : 1.25;                       // ограничиваем ретину
     const dpr = Math.min(DPR_CAP, Math.max(1, devicePixelRatio || 1));
-    let targetFPS = 30;                                          // кап FPS
+    let targetFPS = (isMobile || isLowEnd) ? 24 : 30;            // ниже FPS на слабых устройствах
     let frameInterval = 1000 / targetFPS;
     let acc = 0;
+    let isCanvasVisible = true;                                   // для Intersection Observer
 
     // ===== helpers =====
     const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
@@ -22,13 +24,16 @@
     let scrollP = 0, scrollYpx = 0;
 
     // ===== твои визуальные настройки (как прислал) =====
+    // Снижаем плотность на слабых устройствах
+    const densityMultiplier = (isMobile || isLowEnd) ? 0.6 : 1.0;
+
     const STAR_LAYERS = [
-        { name: 'far', depth: 0.20, countScale: 0.8, size: [0.7, 1.2], color: [210, 225, 255], speed: [0.00002, 0.00006], scrollY: 60, shearX: 0.02 },
-        { name: 'mid', depth: 0.55, countScale: 1.0, size: [0.9, 1.6], color: [180, 210, 255], speed: [0.0002, 0.0004], scrollY: 140, shearX: 0.05 },
-        { name: 'near', depth: 0.95, countScale: 0.9, size: [1.1, 2.0], color: [255, 240, 220], speed: [0.0003, 0.0006], scrollY: 260, shearX: 0.09 },
+        { name: 'far', depth: 0.20, countScale: 0.8 * densityMultiplier, size: [0.7, 1.2], color: [210, 225, 255], speed: [0.00002, 0.00006], scrollY: 60, shearX: 0.02 },
+        { name: 'mid', depth: 0.55, countScale: 1.0 * densityMultiplier, size: [0.9, 1.6], color: [180, 210, 255], speed: [0.0002, 0.0004], scrollY: 140, shearX: 0.05 },
+        { name: 'near', depth: 0.95, countScale: 0.9 * densityMultiplier, size: [1.1, 2.0], color: [255, 240, 220], speed: [0.0003, 0.0006], scrollY: 260, shearX: 0.09 },
     ];
-    const STAR_DENSITY = 0.16;
-    const DOTS_DENSITY = 0.010;
+    const STAR_DENSITY = 0.16 * densityMultiplier;
+    const DOTS_DENSITY = 0.010 * densityMultiplier;
 
     const CLOUDS_COUNT = 5;
     const CLOUDS = [
@@ -259,6 +264,12 @@
     }
 
     function draw(ts) {
+        // Останавливаем анимацию если canvas не видно
+        if (!isCanvasVisible || !running) {
+            requestAnimationFrame(draw);
+            return;
+        }
+
         let dtMs = ts - tPrev; if (dtMs < 0) dtMs = 0; if (dtMs > 100) dtMs = 100; // кап
         tPrev = ts;
         acc += dtMs;
@@ -341,7 +352,25 @@
 
     addEventListener('resize', resize);
 
+    // Intersection Observer для остановки анимации когда canvas вне экрана
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                isCanvasVisible = entry.isIntersecting;
+                if (isCanvasVisible && running) {
+                    // Сбрасываем время при возврате в поле видимости
+                    tPrev = performance.now();
+                }
+            });
+        }, {
+            threshold: 0,
+            rootMargin: '200px' // Запускаем анимацию немного раньше
+        });
+        observer.observe(canvas);
+    }
+
     // init
     function boot() { resize(); updateScroll(); tPrev = performance.now(); requestAnimationFrame(draw); }
     (document.readyState === 'loading') ? document.addEventListener('DOMContentLoaded', boot) : boot();
 })();
+

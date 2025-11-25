@@ -49,11 +49,23 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Add scroll effect to header
+// Throttle helper for performance
+function throttle(func, delay) {
+    let lastCall = 0;
+    return function (...args) {
+        const now = Date.now();
+        if (now - lastCall >= delay) {
+            lastCall = now;
+            func.apply(this, args);
+        }
+    };
+}
+
+// Add scroll effect to header (throttled for performance)
 let lastScroll = 0;
 const header = document.querySelector('.header');
 
-window.addEventListener('scroll', () => {
+const handleScroll = throttle(() => {
     const currentScroll = window.pageYOffset;
 
     if (currentScroll > 100) {
@@ -65,7 +77,9 @@ window.addEventListener('scroll', () => {
     }
 
     lastScroll = currentScroll;
-});
+}, 100); // Throttle to max once per 100ms
+
+window.addEventListener('scroll', handleScroll, { passive: true });
 
 // Intersection Observer for fade-in animations - DISABLED to prevent flickering
 // const observerOptions = {
