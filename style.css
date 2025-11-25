@@ -20,6 +20,8 @@ html {
     scroll-behavior: smooth;
     height: 100%;
     overflow-y: scroll;
+    overflow-x: hidden;
+    /* Fix horizontal scroll issues */
 }
 
 body {
@@ -28,7 +30,10 @@ body {
     font-family: 'Open Sans', sans-serif;
     color: var(--text-white);
     overflow-x: hidden;
+    /* Double check */
+    overflow-x: hidden;
     margin: 0;
+    width: 100%;
     /* Убираем лишние фоны, чтобы избежать артефактов наложения */
 }
 

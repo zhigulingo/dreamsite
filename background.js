@@ -164,7 +164,7 @@
         ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
 
         // верхний фиолетовый «ореол»
-        const cx = W * 0.5 + (scrollYpx * 0.02);
+        const cx = W * 0.5; // Всегда по центру по горизонтали
         const cy = -H * 0.08 - scrollP * TOP_GLOW_SCROLL;
         const r = Math.max(W, H) * 1.2;
         const g2 = ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
