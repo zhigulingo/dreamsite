@@ -7,7 +7,8 @@
 }
 
 :root {
-    --bg-color: #181029;
+    --bg-color: #05070b;
+    /* Deep space color to match canvas gradient */
     --text-white: #ffffff;
     --text-gray: rgba(255, 255, 255, 0.7);
     --accent-purple: #9D6CFF;

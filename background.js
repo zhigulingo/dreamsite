@@ -127,12 +127,24 @@
         ocx.globalCompositeOperation = 'lighter';
         clouds.forEach(c => {
             // рисуем статичный «снимок» без дыхания — дыхание добавим на основном рендере альфой
-            const x = c.ux * W, y = c.uy * H;
-            const g = ocx.createRadialGradient(x, y, 0, x, y, c.r);
-            g.addColorStop(0.00, `rgba(${c.col[0]},${c.col[1]},${c.col[2]},${c.a0})`);
-            g.addColorStop(0.50, `rgba(${c.col[0]},${c.col[1]},${c.col[2]},${c.a0 * 0.25})`);
-            g.addColorStop(1.00, `rgba(${c.col[0]},${c.col[1]},${c.col[2]},0)`);
-            ocx.beginPath(); ocx.fillStyle = g; ocx.arc(x, y, c.r, 0, Math.PI * 2); ocx.fill();
+            const cx = c.ux * W, cy = c.uy * H;
+
+            // Функция рисования одного облака
+            const drawCloud = (x, y) => {
+                const g = ocx.createRadialGradient(x, y, 0, x, y, c.r);
+                g.addColorStop(0.00, `rgba(${c.col[0]},${c.col[1]},${c.col[2]},${c.a0})`);
+                g.addColorStop(0.50, `rgba(${c.col[0]},${c.col[1]},${c.col[2]},${c.a0 * 0.25})`);
+                g.addColorStop(1.00, `rgba(${c.col[0]},${c.col[1]},${c.col[2]},0)`);
+                ocx.beginPath(); ocx.fillStyle = g; ocx.arc(x, y, c.r, 0, Math.PI * 2); ocx.fill();
+            };
+
+            // Рисуем облако и его "соседей" для бесшовности
+            // Проверяем 3x3 сетку вокруг, если облако задевает край
+            for (let dx of [-1, 0, 1]) {
+                for (let dy of [-1, 0, 1]) {
+                    drawCloud(cx + dx * W, cy + dy * H);
+                }
+            }
         });
 
         // offscreen: точки (сразу с прозрачностью)
