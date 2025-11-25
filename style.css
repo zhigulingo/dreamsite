@@ -147,29 +147,34 @@ section {
 /* Hero Section */
 .hero {
     justify-content: flex-start;
-    padding-top: 140px;
+    padding-top: 120px;
+    /* Reduced from 140px */
     text-align: left;
-    /* Выравнивание по левому краю */
+    padding-bottom: 60px;
 }
 
 h1 {
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
-    font-size: 64px;
-    line-height: 1.1;
-    margin-bottom: 30px;
+    font-size: 60px;
+    /* Slightly smaller for tighter feel */
+    line-height: 1.15;
+    /* Tighter line height */
+    margin-bottom: 24px;
+    /* Reduced spacing */
 }
 
 .pill-btn {
     display: inline-block;
     border: 2px solid #6c5ce7;
     background: rgba(108, 92, 231, 0.15);
-    padding: 10px 24px;
+    padding: 12px 28px;
     border-radius: 50px;
-    font-size: 16px;
+    font-size: 17px;
     font-weight: 600;
     color: white;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
+    /* Reduced from 40px */
     text-decoration: none;
     backdrop-filter: blur(5px);
 }
@@ -179,14 +184,16 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    gap: 20px;
+    gap: 24px;
+    /* Slightly more gap */
     margin-bottom: 40px;
     position: relative;
     width: 100%;
 }
 
 .phone {
-    width: 260px;
+    width: 300px;
+    /* Increased from 260px */
     border-radius: 40px;
     /* Убрана тень (box-shadow) по запросу */
     box-shadow: none;
@@ -194,15 +201,18 @@ h1 {
 }
 
 .phone.center {
-    width: 280px;
+    width: 340px;
+    /* Increased from 280px */
     z-index: 10;
-    margin-top: 0;
+    margin-top: -20px;
+    /* Pull center phone up a bit */
 }
 
 .phone.side {
-    margin-top: 60px;
-    opacity: 0.9;
-    transform: scale(0.95);
+    margin-top: 40px;
+    /* Less offset for sides */
+    opacity: 0.95;
+    transform: scale(0.96);
     z-index: 5;
 }
 
@@ -243,13 +253,7 @@ h1 {
 
 .hero .btn-telegram {
     align-self: center;
-    /* Кнопка под телефонами тоже по центру? Или слева? 
-       На скриншоте кнопка под телефонами. Если телефоны по центру, кнопка тоже должна быть по центру.
-       Но "выравнивание текста по левому краю" может касаться заголовка.
-       Давайте сделаем заголовок слева, телефоны по центру, кнопку по центру (под телефонами).
-    */
 }
-
 
 .btn-telegram:hover {
     transform: translateY(-2px);
@@ -257,10 +261,6 @@ h1 {
 }
 
 /* Features */
-.features {
-    /* Snap align handled by section rule */
-}
-
 .section-title {
     font-size: 56px;
     font-weight: 600;
@@ -320,10 +320,6 @@ h1 {
 }
 
 /* How It Works */
-.how-it-works {
-    /* Snap align handled by section rule */
-}
-
 .cards-container {
     display: flex;
     flex-direction: column;
