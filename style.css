@@ -157,26 +157,28 @@ h1 {
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
     font-size: 60px;
-    /* Slightly smaller for tighter feel */
     line-height: 1.15;
-    /* Tighter line height */
-    margin-bottom: 24px;
-    /* Reduced spacing */
+    margin-bottom: 30px;
+    /* Spacing before phones */
 }
 
 .pill-btn {
     display: inline-block;
     border: 2px solid #6c5ce7;
     background: rgba(108, 92, 231, 0.15);
-    padding: 12px 28px;
+    padding: 10px 24px;
     border-radius: 50px;
-    font-size: 17px;
+    font-size: 16px;
     font-weight: 600;
     color: white;
-    margin-bottom: 30px;
-    /* Reduced from 40px */
     text-decoration: none;
     backdrop-filter: blur(5px);
+    vertical-align: middle;
+    /* Align with text */
+    margin-left: 12px;
+    /* Small gap from text */
+    white-space: nowrap;
+    /* Prevent wrapping inside pill */
 }
 
 /* Phones Composition */
