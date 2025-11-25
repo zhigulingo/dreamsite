@@ -180,27 +180,32 @@ section {
 /* Mobile Menu Overlay */
 .mobile-menu {
     position: fixed;
-    top: 0;
-    right: -100%;
-    width: 300px;
-    height: 100vh;
+    top: -100%;
+    /* Start hidden above */
+    left: 0;
+    width: 100%;
     background: rgba(20, 15, 35, 0.98);
     backdrop-filter: blur(30px);
     -webkit-backdrop-filter: blur(30px);
-    z-index: 100;
-    transition: right 0.3s ease;
-    padding-top: 100px;
+    z-index: 99;
+    transition: top 0.3s ease;
+    padding-top: 80px;
+    /* Space for header */
+    max-height: 100vh;
+    overflow-y: auto;
 }
 
 .mobile-menu.active {
-    right: 0;
+    top: 0;
+    /* Slide down */
 }
 
 .mobile-nav {
     display: flex;
     flex-direction: column;
-    gap: 30px;
-    padding: 40px 30px;
+    gap: 20px;
+    padding: 30px;
+    padding-top: 40px;
 }
 
 .mobile-nav-link {
@@ -209,6 +214,8 @@ section {
     font-size: 20px;
     font-weight: 400;
     transition: color 0.3s;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .mobile-nav-link:hover {
@@ -221,7 +228,8 @@ section {
     padding: 14px 24px;
     border-radius: 30px;
     text-align: center;
-    margin-top: 20px;
+    margin-top: 10px;
+    border: none;
 }
 
 /* Hero Section */
@@ -499,20 +507,15 @@ h1 {
 /* Mobile */
 @media (max-width: 768px) {
 
-    /* Fix iOS safe areas and black bars */
+    /* Fix black bars and flickering */
     html {
-        height: 100%;
-        position: fixed;
-        overflow: hidden;
-        width: 100%;
+        overscroll-behavior-y: none;
+        /* Prevent bounce effect and flickering */
+        -webkit-overflow-scrolling: touch;
     }
 
     body {
-        height: 100%;
-        width: 100%;
-        position: fixed;
-        overflow-y: auto;
-        overflow-x: hidden;
+        overscroll-behavior-y: none;
         -webkit-overflow-scrolling: touch;
         padding: 0;
         margin: 0;
@@ -522,8 +525,8 @@ h1 {
         font-size: 28px;
         line-height: 1.3;
         margin-bottom: 20px;
-        text-align: left;
-        /* Left align on mobile */
+        text-align: center;
+        /* Center title on mobile like reference */
     }
 
     .phones-container {
@@ -531,11 +534,8 @@ h1 {
         justify-content: center;
         gap: 12px;
         transform: scale(0.65);
-        margin-bottom: 20px;
-        margin-top: 20px;
-        margin-left: 0;
-        /* No shift */
-        margin-right: 0;
+        margin: 20px auto;
+        /* Center */
     }
 
     .phone {
@@ -614,16 +614,16 @@ h1 {
     }
 
     .hero {
-        align-items: flex-start;
-        /* Left align hero */
-        text-align: left;
+        align-items: center;
+        /* Center hero content */
+        text-align: center;
         padding-top: 100px;
         padding-bottom: 80px;
     }
 
     .hero .container {
-        align-items: flex-start;
-        /* Left align container */
+        align-items: center;
+        /* Center container */
         padding: 0 20px;
         width: 100%;
         max-width: 100%;
@@ -631,8 +631,8 @@ h1 {
 
     .pill-btn {
         display: block;
-        margin: 20px 0 0 0;
-        /* Remove auto centering */
+        margin: 20px auto 0;
+        /* Center button */
         font-size: 14px;
         padding: 8px 20px;
     }
@@ -641,10 +641,10 @@ h1 {
         padding: 30px 20px;
     }
 
-    /* Left align feature cards on mobile */
+    /* Center feature cards on mobile */
     .feature-item {
-        align-items: flex-start;
-        text-align: left;
+        align-items: center;
+        text-align: center;
     }
 
     .waitlist-container {
