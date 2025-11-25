@@ -254,8 +254,9 @@
 
         // туманности (offscreen) с параллаксом
         // альфу «дыхания» добавим поверх: так дешевле, чем перерисовывать градиенты
+        // убираем сдвиг по X, оставляем только вертикальный скролл
         drawTiled(offClouds,
-            (scrollYpx * CLOUD_SHEAR_X * 0.6),
+            0,
             (scrollP * CLOUD_SCROLL_Y),
             1, 'lighter');
 
@@ -267,7 +268,8 @@
             const meta = L.meta, rgb = L.rgb;
             ctx.fillStyle = rgb;
             for (const s of L.stars) {
-                const x = s.ux * W + (1 - meta.depth) * (scrollYpx * meta.shearX * 100);
+                // Убираем shearX (сдвиг по горизонтали), оставляем только базовую позицию ux*W
+                const x = s.ux * W;
                 const y = s.uy * H + (1 - meta.depth) * (scrollP * meta.scrollY);
                 const a = clamp(0.26 + 0.06 * Math.sin(ts / 1000 * (0.8 + s.tw) + s.ph), 0.14, 0.55);
                 ctx.globalAlpha = a;
