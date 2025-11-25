@@ -432,18 +432,19 @@ h1 {
     }
 
     h1 {
-        font-size: 32px;
+        font-size: 28px;
         line-height: 1.3;
-        /* Better readability on mobile */
         margin-bottom: 20px;
+        text-align: center;
+        /* Center on mobile */
     }
 
     .phones-container {
         flex-direction: row;
-        /* Keep phones in a row but smaller */
         justify-content: center;
         gap: 12px;
-        transform: scale(0.7);
+        transform: scale(0.65);
+        /* Smaller on mobile */
         margin-bottom: 20px;
         margin-top: 20px;
     }
@@ -463,17 +464,19 @@ h1 {
 
     .features-grid {
         grid-template-columns: 1fr;
-        gap: 40px;
+        gap: 50px;
+        /* More spacing between features */
     }
 
     .feature-desc {
         line-height: 1.7;
-        /* Better spacing for readability */
     }
 
     .header {
-        width: 95%;
-        padding: 10px 20px;
+        width: calc(100% - 20px);
+        /* Account for margins */
+        padding: 12px 20px;
+        margin: 0 10px;
     }
 
     .nav {
@@ -481,20 +484,29 @@ h1 {
     }
 
     .hamburger {
-        display: flex;
-        /* Show hamburger on mobile */
+        display: flex !important;
+        /* Force show hamburger */
+        position: relative;
+        z-index: 102;
+    }
+
+    .hamburger span {
+        background: var(--text-white);
+        width: 22px;
+        height: 2px;
     }
 
     .philosophy-text {
         font-size: 24px;
         line-height: 1.5;
-        /* Improved readability */
     }
 
     .section-title {
         font-size: 28px;
         line-height: 1.3;
-        margin-bottom: 30px;
+        margin-bottom: 40px;
+        text-align: center;
+        /* Center titles on mobile */
     }
 
     .card-title {
@@ -505,7 +517,6 @@ h1 {
     .card-desc {
         font-size: 16px;
         line-height: 1.7;
-        /* Better readability */
     }
 
     .form-row {
@@ -513,7 +524,8 @@ h1 {
     }
 
     section {
-        padding: 60px 0;
+        padding: 80px 0;
+        /* More spacing between sections */
         min-height: auto;
     }
 
@@ -521,17 +533,30 @@ h1 {
         align-items: center;
         text-align: center;
         padding-top: 100px;
+        padding-bottom: 80px;
     }
 
     .hero .container {
         align-items: center;
+        padding: 0 20px;
+        /* Ensure content doesn't touch edges */
     }
 
     .pill-btn {
         display: block;
-        /* Make pill separate element on mobile */
         margin: 20px auto 0;
         font-size: 14px;
         padding: 8px 20px;
+    }
+
+    .dark-card {
+        padding: 30px 20px;
+        /* Less padding on mobile */
+    }
+
+    /* Fix feature cards layout on mobile */
+    .feature-item {
+        align-items: center;
+        text-align: center;
     }
 }

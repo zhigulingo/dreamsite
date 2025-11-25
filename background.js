@@ -75,21 +75,30 @@
         canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
         // canvas.style.width=W+'px'; canvas.style.height=H+'px'; // Let CSS handle this
 
-        // звёзды по слоям
-        layers = STAR_LAYERS.map(L => {
+        // Seeded random для стабильности между перезагрузками
+        const seededRandom = (seed) => {
+            let x = Math.sin(seed++) * 10000;
+            return x - Math.floor(x);
+        };
+
+        // звёзды по слоям (с фиксированным сидом)
+        layers = STAR_LAYERS.map((L, layerIndex) => {
             const base = Math.round((W * H) / (1e6) * (STAR_DENSITY * 1000) * L.countScale);
             const count = Math.max(18, base);
-            const rgb = `rgb(${L.color[0]},${L.color[1]},${L.color[2]})`; // без альфы — потом глобальной альфой
+            const rgb = `rgb(${L.color[0]},${L.color[1]},${L.color[2]})`;
             const arr = [];
             for (let i = 0; i < count; i++) {
-                const ang = rand(0, Math.PI * 2);
-                const spd = rand(L.speed[0], L.speed[1]) * (0.6 + 0.8 * (L.depth));
+                const seed = layerIndex * 10000 + i;
+                const ang = seededRandom(seed * 3) * Math.PI * 2;
+                const spd = (L.speed[0] + seededRandom(seed * 5) * (L.speed[1] - L.speed[0])) * (0.6 + 0.8 * (L.depth));
                 arr.push({
-                    ux: Math.random(), uy: Math.random(),
+                    ux: seededRandom(seed * 7),
+                    uy: seededRandom(seed * 11),
                     vx: Math.cos(ang) * spd, vy: Math.sin(ang) * spd,
-                    r: rand(L.size[0], L.size[1]),
+                    r: L.size[0] + seededRandom(seed * 13) * (L.size[1] - L.size[0]),
                     depth: L.depth,
-                    tw: rand(0.7, 1.3), ph: rand(0, Math.PI * 2)
+                    tw: 0.7 + seededRandom(seed * 17) * 0.6,
+                    ph: seededRandom(seed * 19) * Math.PI * 2
                 });
             }
             return { meta: L, rgb, stars: arr };
@@ -105,11 +114,6 @@
         }));
 
         // туманности (с фиксированным сидом для стабильности)
-        const seededRandom = (seed) => {
-            let x = Math.sin(seed++) * 10000;
-            return x - Math.floor(x);
-        };
-
         clouds = Array.from({ length: CLOUDS_COUNT }, (_, i) => {
             const c = CLOUDS[Math.floor(seededRandom(i * 7) * CLOUDS.length)];
             const baseR = (0.38 + seededRandom(i * 11) * 0.24) * Math.max(W, H);
