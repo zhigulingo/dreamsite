@@ -19,10 +19,11 @@ hamburger.addEventListener('click', () => {
 });
 
 // Close mobile menu when clicking a link
-const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+const mobileMenuLinks = document.querySelectorAll('.mobile-nav-link');
 mobileMenuLinks.forEach(link => {
     link.addEventListener('click', () => {
         mobileMenu.classList.remove('active');
+        hamburger.classList.remove('active');
         const spans = hamburger.querySelectorAll('span');
         spans[0].style.transform = 'none';
         spans[1].style.opacity = '1';
@@ -66,28 +67,28 @@ window.addEventListener('scroll', () => {
     lastScroll = currentScroll;
 });
 
-// Intersection Observer for fade-in animations
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
-};
+// Intersection Observer for fade-in animations - DISABLED to prevent flickering
+// const observerOptions = {
+//     threshold: 0.1,
+//     rootMargin: '0px 0px -100px 0px'
+// };
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
-}, observerOptions);
+// const observer = new IntersectionObserver((entries) => {
+//     entries.forEach(entry => {
+//         if (entry.isIntersecting) {
+//             entry.target.style.opacity = '1';
+//             entry.target.style.transform = 'translateY(0)';
+//         }
+//     });
+// }, observerOptions);
 
 // Observe sections for animation
-document.querySelectorAll('.feature-card, .step-card').forEach(element => {
-    element.style.opacity = '0';
-    element.style.transform = 'translateY(30px)';
-    element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(element);
-});
+// document.querySelectorAll('.feature-card, .step-card').forEach(element => {
+//     element.style.opacity = '0';
+//     element.style.transform = 'translateY(30px)';
+//     element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+//     observer.observe(element);
+// });
 
 // Log page visit
 console.log('Dreams Talk - AI Dream Analysis');

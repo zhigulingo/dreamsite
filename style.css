@@ -144,6 +144,86 @@ section {
     opacity: 0.9;
 }
 
+/* Hamburger Menu */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    z-index: 101;
+}
+
+.hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: white;
+    transition: all 0.3s ease;
+    border-radius: 2px;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(7px, 7px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* Mobile Menu Overlay */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 300px;
+    height: 100vh;
+    background: rgba(20, 15, 35, 0.98);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    z-index: 100;
+    transition: right 0.3s ease;
+    padding-top: 100px;
+}
+
+.mobile-menu.active {
+    right: 0;
+}
+
+.mobile-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 40px 30px;
+}
+
+.mobile-nav-link {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 400;
+    transition: color 0.3s;
+}
+
+.mobile-nav-link:hover {
+    color: var(--accent-purple);
+}
+
+.mobile-nav-link.btn-mobile {
+    background: var(--btn-purple);
+    color: white;
+    padding: 14px 24px;
+    border-radius: 30px;
+    text-align: center;
+    margin-top: 20px;
+}
+
 /* Hero Section */
 .hero {
     justify-content: flex-start;
@@ -419,24 +499,31 @@ h1 {
 /* Mobile */
 @media (max-width: 768px) {
 
-    /* Fix iOS safe areas */
-    body {
-        padding-top: env(safe-area-inset-top);
-        padding-bottom: env(safe-area-inset-bottom);
-        min-height: 100vh;
-        min-height: -webkit-fill-available;
+    /* Fix iOS safe areas and black bars */
+    html {
+        height: 100%;
+        position: fixed;
+        overflow: hidden;
+        width: 100%;
     }
 
-    html {
-        height: -webkit-fill-available;
+    body {
+        height: 100%;
+        width: 100%;
+        position: fixed;
+        overflow-y: auto;
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch;
+        padding: 0;
+        margin: 0;
     }
 
     h1 {
         font-size: 28px;
         line-height: 1.3;
         margin-bottom: 20px;
-        text-align: center;
-        /* Center on mobile */
+        text-align: left;
+        /* Left align on mobile */
     }
 
     .phones-container {
@@ -444,9 +531,11 @@ h1 {
         justify-content: center;
         gap: 12px;
         transform: scale(0.65);
-        /* Smaller on mobile */
         margin-bottom: 20px;
         margin-top: 20px;
+        margin-left: 0;
+        /* No shift */
+        margin-right: 0;
     }
 
     .phone {
@@ -465,7 +554,6 @@ h1 {
     .features-grid {
         grid-template-columns: 1fr;
         gap: 50px;
-        /* More spacing between features */
     }
 
     .feature-desc {
@@ -474,39 +562,36 @@ h1 {
 
     .header {
         width: calc(100% - 20px);
-        /* Account for margins */
         padding: 12px 20px;
-        margin: 0 10px;
+        margin: 10px;
     }
 
     .nav {
         display: none;
     }
 
-    .hamburger {
-        display: flex !important;
-        /* Force show hamburger */
-        position: relative;
-        z-index: 102;
+    .logo {
+        font-size: 18px;
     }
 
-    .hamburger span {
-        background: var(--text-white);
-        width: 22px;
-        height: 2px;
+    .hamburger {
+        display: flex !important;
+        /* Show hamburger on mobile */
     }
 
     .philosophy-text {
         font-size: 24px;
         line-height: 1.5;
+        text-align: left;
+        /* Left align */
     }
 
     .section-title {
         font-size: 28px;
         line-height: 1.3;
         margin-bottom: 40px;
-        text-align: center;
-        /* Center titles on mobile */
+        text-align: left;
+        /* Left align */
     }
 
     .card-title {
@@ -525,38 +610,44 @@ h1 {
 
     section {
         padding: 80px 0;
-        /* More spacing between sections */
         min-height: auto;
     }
 
     .hero {
-        align-items: center;
-        text-align: center;
+        align-items: flex-start;
+        /* Left align hero */
+        text-align: left;
         padding-top: 100px;
         padding-bottom: 80px;
     }
 
     .hero .container {
-        align-items: center;
+        align-items: flex-start;
+        /* Left align container */
         padding: 0 20px;
-        /* Ensure content doesn't touch edges */
+        width: 100%;
+        max-width: 100%;
     }
 
     .pill-btn {
         display: block;
-        margin: 20px auto 0;
+        margin: 20px 0 0 0;
+        /* Remove auto centering */
         font-size: 14px;
         padding: 8px 20px;
     }
 
     .dark-card {
         padding: 30px 20px;
-        /* Less padding on mobile */
     }
 
-    /* Fix feature cards layout on mobile */
+    /* Left align feature cards on mobile */
     .feature-item {
-        align-items: center;
-        text-align: center;
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .waitlist-container {
+        padding: 40px 20px;
     }
 }
