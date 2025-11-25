@@ -163,9 +163,9 @@
         g.addColorStop(0.00, '#0f1322'); g.addColorStop(0.45, '#0a0e1a'); g.addColorStop(1.00, '#05070b');
         ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
 
-        // верхний фиолетовый «ореол»
-        const cx = W * 0.5; // Всегда по центру по горизонтали
-        const cy = -H * 0.08 - scrollP * TOP_GLOW_SCROLL;
+        // верхний фиолетовый «ореол» — ФИКСИРОВАННЫЙ, НЕ СКРОЛЛИТСЯ
+        const cx = W * 0.5;
+        const cy = -H * 0.2; // Всегда сверху, не зависит от скролла
         const r = Math.max(W, H) * 1.2;
         const g2 = ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
         g2.addColorStop(0.00, 'rgba(120,70,220,0.42)');
