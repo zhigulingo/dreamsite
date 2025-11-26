@@ -106,19 +106,45 @@
 
     <!-- Philosophy Section -->
     <section class="philosophy">
-        <div class="container">
-            <p class="philosophy-text">
-                <span style="color: #BF91FF;">Dreams Talk</span> раскрывает язык бессознательного. <br>
-                <span>Анализируя символы, эмоции и сюжеты, приложение превращает сновидения в источник понимания себя и
-                    вдохновения для перемен.</span>
-            </p>
+        <div class="container philosophy-container">
+            <div class="philosophy-content">
+                <p class="philosophy-text">
+                    <span style="color: #BF91FF;">Dreams Talk</span> раскрывает язык бессознательного. <br>
+                    <span>Анализируя символы, эмоции и сюжеты, приложение превращает сновидения в источник понимания
+                        себя и
+                        вдохновения для перемен.</span>
+                </p>
+            </div>
+            <div class="philosophy-animation">
+                <div class="anim-card card-1">
+                    <span class="anim-icon">👁️</span>
+                    <div class="anim-text">
+                        <strong>Символ</strong>
+                        <small>Ключ к смыслу</small>
+                    </div>
+                </div>
+                <div class="anim-card card-2">
+                    <span class="anim-icon">🌊</span>
+                    <div class="anim-text">
+                        <strong>Эмоция</strong>
+                        <small>Энергия сна</small>
+                    </div>
+                </div>
+                <div class="anim-card card-3">
+                    <span class="anim-icon">🎭</span>
+                    <div class="anim-text">
+                        <strong>Сюжет</strong>
+                        <small>Сценарий жизни</small>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- How It Works Section -->
     <section id="how-it-works" class="how-it-works">
         <div class="container">
-            <h2 class="section-title" style="text-align: center; margin-bottom: 60px;">Как это работает</h2>
+            <h2 class="section-title" style="margin-bottom: 60px;">Как это работает</h2>
             <div class="cards-container">
                 <div class="dark-card">
                     <h3 class="card-title">Понимай логику сна.</h3>
@@ -141,12 +167,14 @@
     <section class="waitlist">
         <div class="container">
             <div class="waitlist-container">
+                <div id="telegram-post-container"
+                    style="margin-bottom: 30px; width: 100%; display: flex; justify-content: center; min-height: 200px;">
+                    <!-- Telegram Widget will be loaded here -->
+                </div>
+
                 <h2 style="font-size: 32px; margin-bottom: 10px;">Следи за новостями в сообществе</h2>
                 <p style="color: rgba(255,255,255,0.6); margin-bottom: 20px;">
-                    <a href="https://t.me/thedreamshub" target="_blank"
-                        style="color: #9D6CFF; text-decoration: none; font-weight: 500;">t.me/thedreamshub</a>
-                    <br>
-                    Или оставь свою почту, чтобы получить уведомление когда приложение запустится.
+                    Оставь свою почту, чтобы получить уведомление когда приложение запустится.
                 </p>
 
                 <form class="form-row" id="emailForm">
@@ -155,11 +183,6 @@
                 </form>
 
                 <div class="form-message" id="formMessage"></div>
-
-                <div id="telegram-post-container"
-                    style="margin-top: 30px; width: 100%; display: flex; justify-content: center; min-height: 200px;">
-                    <!-- Telegram Widget will be loaded here -->
-                </div>
             </div>
         </div>
     </section>
