@@ -414,6 +414,11 @@ h1 {
     flex-direction: column;
     align-items: flex-start;
     text-align: left;
+    background: rgba(30, 20, 50, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 30px;
+    padding: 40px;
+    backdrop-filter: blur(10px);
 }
 
 .feature-icon {
