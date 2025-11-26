@@ -106,37 +106,138 @@
 
     <!-- Philosophy Section -->
     <section class="philosophy">
-        <div class="container philosophy-container">
-            <div class="philosophy-content">
-                <p class="philosophy-text">
-                    <span style="color: #BF91FF;">Dreams Talk</span> раскрывает язык бессознательного. <br>
-                    <span>Анализируя символы, эмоции и сюжеты, приложение превращает сновидения в источник понимания
-                        себя и
-                        вдохновения для перемен.</span>
-                </p>
-            </div>
-            <div class="philosophy-animation">
-                <div class="anim-card card-1">
-                    <span class="anim-icon">👁️</span>
-                    <div class="anim-text">
-                        <strong>Символ</strong>
-                        <small>Ключ к смыслу</small>
+        <div class="container">
+            <p class="philosophy-text">
+                <span style="color: #BF91FF;">Dreams Talk</span> раскрывает язык бессознательного.
+                Анализируя символы, эмоции и сюжеты, приложение превращает сновидения в источник понимания себя и
+                вдохновения для перемен.
+            </p>
+
+            <div class="philosophy-animation-wrapper">
+                <div class="philosophy-animation">
+                    <div class="card-carousel">
+                        <div class="anim-card" data-index="0">
+                            <svg class="card-visual" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Heart shape from vertical lines -->
+                                <defs>
+                                    <linearGradient id="heartGlow" x1="0%" y1="0%" x2="0%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#BF91FF;stop-opacity:0" />
+                                        <stop offset="50%" style="stop-color:#BF91FF;stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:#BF91FF;stop-opacity:0" />
+                                    </linearGradient>
+                                </defs>
+                                <g class="lines-container">
+                                    <!-- Generate heart shape with varying line heights -->
+                                    <rect x="20" y="80" width="2" height="40" fill="url(#heartGlow)" opacity="0.3" />
+                                    <rect x="30" y="60" width="2" height="80" fill="url(#heartGlow)" opacity="0.4" />
+                                    <rect x="40" y="45" width="2" height="110" fill="url(#heartGlow)" opacity="0.5" />
+                                    <rect x="50" y="35" width="2" height="130" fill="url(#heartGlow)" opacity="0.6" />
+                                    <rect x="60" y="30" width="2" height="140" fill="url(#heartGlow)" opacity="0.7" />
+                                    <rect x="70" y="28" width="2" height="144" fill="url(#heartGlow)" opacity="0.8" />
+                                    <rect x="80" y="30" width="2" height="140" fill="url(#heartGlow)" opacity="0.9" />
+                                    <rect x="90" y="35" width="2" height="130" fill="url(#heartGlow)" opacity="1" />
+                                    <rect x="100" y="40" width="2" height="120" fill="url(#heartGlow)" opacity="0.9" />
+                                    <rect x="110" y="35" width="2" height="130" fill="url(#heartGlow)" opacity="1" />
+                                    <rect x="120" y="30" width="2" height="140" fill="url(#heartGlow)" opacity="0.9" />
+                                    <rect x="130" y="28" width="2" height="144" fill="url(#heartGlow)" opacity="0.8" />
+                                    <rect x="140" y="30" width="2" height="140" fill="url(#heartGlow)" opacity="0.7" />
+                                    <rect x="150" y="35" width="2" height="130" fill="url(#heartGlow)" opacity="0.6" />
+                                    <rect x="160" y="45" width="2" height="110" fill="url(#heartGlow)" opacity="0.5" />
+                                    <rect x="170" y="60" width="2" height="80" fill="url(#heartGlow)" opacity="0.4" />
+                                    <rect x="180" y="80" width="2" height="40" fill="url(#heartGlow)" opacity="0.3" />
+                                </g>
+                                <animateTransform attributeName="transform" type="translate" values="0 0; 0 -5; 0 0"
+                                    dur="2s" repeatCount="indefinite" />
+                            </svg>
+                            <div class="card-content">
+                                <h4>Символы</h4>
+                                <p>Каждый образ в сне несёт глубокий смысл и отражает скрытые аспекты вашей психики.</p>
+                            </div>
+                        </div>
+
+                        <div class="anim-card" data-index="1">
+                            <svg class="card-visual" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Lightning bolt from vertical lines -->
+                                <defs>
+                                    <linearGradient id="lightningGlow" x1="0%" y1="0%" x2="0%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#FFD700;stop-opacity:0" />
+                                        <stop offset="50%" style="stop-color:#FFD700;stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:#FFD700;stop-opacity:0" />
+                                    </linearGradient>
+                                </defs>
+                                <g class="lines-container">
+                                    <rect x="30" y="90" width="2" height="20" fill="url(#lightningGlow)"
+                                        opacity="0.3" />
+                                    <rect x="40" y="80" width="2" height="40" fill="url(#lightningGlow)"
+                                        opacity="0.4" />
+                                    <rect x="50" y="70" width="2" height="60" fill="url(#lightningGlow)"
+                                        opacity="0.5" />
+                                    <rect x="60" y="55" width="2" height="90" fill="url(#lightningGlow)"
+                                        opacity="0.6" />
+                                    <rect x="70" y="40" width="2" height="120" fill="url(#lightningGlow)"
+                                        opacity="0.7" />
+                                    <rect x="80" y="30" width="2" height="140" fill="url(#lightningGlow)"
+                                        opacity="0.8" />
+                                    <rect x="90" y="25" width="2" height="150" fill="url(#lightningGlow)"
+                                        opacity="0.9" />
+                                    <rect x="100" y="20" width="2" height="160" fill="url(#lightningGlow)"
+                                        opacity="1" />
+                                    <rect x="110" y="25" width="2" height="150" fill="url(#lightningGlow)"
+                                        opacity="0.9" />
+                                    <rect x="120" y="40" width="2" height="120" fill="url(#lightningGlow)"
+                                        opacity="0.7" />
+                                    <rect x="130" y="60" width="2" height="80" fill="url(#lightningGlow)"
+                                        opacity="0.5" />
+                                    <rect x="140" y="80" width="2" height="40" fill="url(#lightningGlow)"
+                                        opacity="0.3" />
+                                </g>
+                                <animateTransform attributeName="transform" type="translate" values="0 0; 0 -8; 0 0"
+                                    dur="1.5s" repeatCount="indefinite" />
+                            </svg>
+                            <div class="card-content">
+                                <h4>Эмоции</h4>
+                                <p>Чувства во сне — это энергия вашего бессознательного, направляющая к внутреннему
+                                    равновесию.</p>
+                            </div>
+                        </div>
+
+                        <div class="anim-card" data-index="2">
+                            <svg class="card-visual" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Person silhouette from vertical lines -->
+                                <defs>
+                                    <linearGradient id="personGlow" x1="0%" y1="0%" x2="0%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#6C5CE7;stop-opacity:0" />
+                                        <stop offset="50%" style="stop-color:#6C5CE7;stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:#6C5CE7;stop-opacity:0" />
+                                    </linearGradient>
+                                </defs>
+                                <g class="lines-container">
+                                    <!-- Head -->
+                                    <rect x="85" y="50" width="2" height="30" fill="url(#personGlow)" opacity="0.5" />
+                                    <rect x="95" y="45" width="2" height="40" fill="url(#personGlow)" opacity="0.7" />
+                                    <rect x="105" y="45" width="2" height="40" fill="url(#personGlow)" opacity="0.7" />
+                                    <rect x="115" y="50" width="2" height="30" fill="url(#personGlow)" opacity="0.5" />
+                                    <!-- Body -->
+                                    <rect x="70" y="85" width="2" height="80" fill="url(#personGlow)" opacity="0.4" />
+                                    <rect x="80" y="85" width="2" height="95" fill="url(#personGlow)" opacity="0.6" />
+                                    <rect x="90" y="85" width="2" height="100" fill="url(#personGlow)" opacity="0.8" />
+                                    <rect x="100" y="85" width="2" height="105" fill="url(#personGlow)" opacity="1" />
+                                    <rect x="110" y="85" width="2" height="100" fill="url(#personGlow)" opacity="0.8" />
+                                    <rect x="120" y="85" width="2" height="95" fill="url(#personGlow)" opacity="0.6" />
+                                    <rect x="130" y="85" width="2" height="80" fill="url(#personGlow)" opacity="0.4" />
+                                </g>
+                                <animateTransform attributeName="transform" type="translate" values="0 0; 0 -3; 0 0"
+                                    dur="2.5s" repeatCount="indefinite" />
+                            </svg>
+                            <div class="card-content">
+                                <h4>Сюжеты</h4>
+                                <p>Истории сновидений раскрывают сценарии вашей жизни и пути личностной трансформации.
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="anim-card card-2">
-                    <span class="anim-icon">🌊</span>
-                    <div class="anim-text">
-                        <strong>Эмоция</strong>
-                        <small>Энергия сна</small>
-                    </div>
-                </div>
-                <div class="anim-card card-3">
-                    <span class="anim-icon">🎭</span>
-                    <div class="anim-text">
-                        <strong>Сюжет</strong>
-                        <small>Сценарий жизни</small>
-                    </div>
-                </div>
+                <div class="animation-fade-overlay"></div>
             </div>
         </div>
     </section>
