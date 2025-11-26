@@ -163,3 +163,36 @@ function showMessage(text, type) {
 // Log page visit
 console.log('Dreams Talk - AI Dream Analysis');
 console.log('Website loaded successfully');
+
+// Fetch and display latest Telegram post
+async function loadTelegramWidget() {
+    const container = document.getElementById('telegram-post-container');
+    if (!container) return;
+
+    try {
+        const response = await fetch('/api/get-telegram-post');
+        const data = await response.json();
+
+        if (data.success && data.fullId) {
+            const script = document.createElement('script');
+            script.async = true;
+            script.src = "https://telegram.org/js/telegram-widget.js?22";
+            script.setAttribute('data-telegram-post', data.fullId);
+            script.setAttribute('data-width', '100%');
+            script.setAttribute('data-userpic', 'true');
+            script.setAttribute('data-dark', '1'); // Dark mode
+
+            container.appendChild(script);
+        } else {
+            console.warn('Could not fetch latest Telegram post:', data.error);
+            container.style.display = 'none';
+        }
+    } catch (error) {
+        console.error('Error loading Telegram widget:', error);
+        container.style.display = 'none';
+    }
+}
+
+// Load widget when page loads
+document.addEventListener('DOMContentLoaded', loadTelegramWidget);
+
