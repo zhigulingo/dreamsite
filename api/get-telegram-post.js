@@ -20,7 +20,7 @@ export default async function handler(req, res) {
 
         // Regex to find all data-post="channel/id"
         // Example: data-post="thedreamshub/123"
-        const regex = new RegExp(`data-post="${channelUsername}/(\\d+)"`, 'g');
+        const regex = new RegExp(`data-post="${channelUsername}/(\\d+)"`, 'gi');
         let match;
         let maxId = 0;
 

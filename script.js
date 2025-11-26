@@ -169,28 +169,33 @@ async function loadTelegramWidget() {
     const container = document.getElementById('telegram-post-container');
     if (!container) return;
 
+    const channelName = 'thedreamshub';
+    let postId = '22'; // Fallback post ID
+
     try {
         const response = await fetch('/api/get-telegram-post');
         const data = await response.json();
 
-        if (data.success && data.fullId) {
-            const script = document.createElement('script');
-            script.async = true;
-            script.src = "https://telegram.org/js/telegram-widget.js?22";
-            script.setAttribute('data-telegram-post', data.fullId);
-            script.setAttribute('data-width', '100%');
-            script.setAttribute('data-userpic', 'true');
-            script.setAttribute('data-dark', '1'); // Dark mode
-
-            container.appendChild(script);
+        if (data.success && data.postId) {
+            postId = data.postId;
         } else {
-            console.warn('Could not fetch latest Telegram post:', data.error);
-            container.style.display = 'none';
+            console.warn('Could not fetch latest Telegram post, using fallback:', data.error);
         }
     } catch (error) {
-        console.error('Error loading Telegram widget:', error);
-        container.style.display = 'none';
+        console.error('Error loading Telegram widget, using fallback:', error);
     }
+
+    // Always try to render the widget with either the fetched ID or the fallback
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = "https://telegram.org/js/telegram-widget.js?22";
+    script.setAttribute('data-telegram-post', `${channelName}/${postId}`);
+    script.setAttribute('data-width', '100%');
+    script.setAttribute('data-userpic', 'true');
+    script.setAttribute('data-dark', '1'); // Dark mode
+
+    container.innerHTML = ''; // Clear container just in case
+    container.appendChild(script);
 }
 
 // Load widget when page loads
