@@ -446,7 +446,7 @@ h1 {
     align-items: center;
     text-align: left;
     overflow: hidden;
-    min-height: 60vh;
+    min-height: 100vh;
     display: flex;
 }
 
@@ -495,7 +495,7 @@ h1 {
 .cards-container {
     display: flex;
     flex-direction: column;
-    gap: 60px;
+    gap: 40px;
 }
 
 .dark-card {
