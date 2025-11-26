@@ -446,7 +446,7 @@ h1 {
     align-items: center;
     text-align: left;
     overflow: hidden;
-    min-height: 40vh;
+    min-height: 60vh;
     display: flex;
 }
 
@@ -459,7 +459,7 @@ h1 {
 
 .philosophy-text {
     font-size: 48px;
-    line-height: 1.4;
+    line-height: 1.2;
     font-weight: 400;
     max-width: 800px;
     margin: 0 auto;
@@ -489,57 +489,13 @@ h1 {
     }
 }
 
-@keyframes carouselRotate0 {
 
-    0%,
-    100% {
-        transform: translate(0, 0) scale(1);
-        opacity: 1;
-    }
-
-    33%,
-    66% {
-        transform: translate(0, 0) scale(0.8);
-        opacity: 0.2;
-    }
-}
-
-@keyframes carouselRotate1 {
-
-    0%,
-    66%,
-    100% {
-        transform: translate(0, 0) scale(0.8);
-        opacity: 0.2;
-    }
-
-    33% {
-        transform: translate(0, 0) scale(1);
-        opacity: 1;
-    }
-}
-
-@keyframes carouselRotate2 {
-
-    0%,
-    33%,
-    100% {
-        transform: translate(0, 0) scale(0.8);
-        opacity: 0.2;
-    }
-
-    66% {
-        transform: translate(0, 0) scale(1);
-        opacity: 1;
-    }
-}
-}
 
 /* How It Works */
 .cards-container {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 60px;
 }
 
 .dark-card {
