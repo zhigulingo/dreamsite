@@ -489,15 +489,15 @@ h1 {
 
 .card-carousel {
     position: relative;
-    width: 350px;
-    height: 350px;
+    width: 280px;
+    height: 280px;
     perspective: 1000px;
 }
 
 .anim-card {
     position: absolute;
-    width: 350px;
-    height: 350px;
+    width: 280px;
+    height: 280px;
     background: rgba(20, 15, 35, 0.9);
     border: 1px solid rgba(157, 108, 255, 0.2);
     border-radius: 30px;
@@ -506,23 +506,30 @@ h1 {
     box-shadow: 0 20px 60px rgba(157, 108, 255, 0.15);
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 25px;
+    justify-content: flex-end;
+    align-items: flex-start;
     transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     transform-style: preserve-3d;
     left: 0;
     top: 0;
+    overflow: hidden;
 }
 
-.card-visual {
-    width: 200px;
-    height: 200px;
-    filter: drop-shadow(0 0 20px rgba(157, 108, 255, 0.3));
+.card-bg-icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 120px;
+    opacity: 0.15;
+    filter: grayscale(100%);
+    pointer-events: none;
+    line-height: 1;
 }
 
 .card-content {
-    text-align: center;
+    text-align: left;
+    position: relative;
+    z-index: 2;
 }
 
 .card-content h4 {
@@ -617,22 +624,22 @@ h1 {
 
     .philosophy-animation-wrapper {
         height: 350px;
+        width: 100%;
     }
 
     .card-carousel {
-        width: 280px;
-        height: 280px;
+        width: 260px;
+        height: 260px;
     }
 
     .anim-card {
-        width: 280px;
-        height: 280px;
-        padding: 20px;
+        width: 260px;
+        height: 260px;
+        padding: 25px;
     }
 
-    .card-visual {
-        width: 150px;
-        height: 150px;
+    .card-bg-icon {
+        font-size: 100px;
     }
 
     .card-content h4 {
