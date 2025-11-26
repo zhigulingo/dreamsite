@@ -166,33 +166,37 @@
     <!-- Waitlist Section -->
     <section class="waitlist">
         <div class="container">
-            <div class="waitlist-container">
-                <h2 style="font-size: 32px; margin-bottom: 10px;">Следи за новостями в сообществе</h2>
+            <h2 class="section-title">Следи за новостями</h2>
 
-                <div id="telegram-post-container"
-                    style="margin-bottom: 30px; width: 100%; display: flex; justify-content: center; min-height: 200px;">
-                    <!-- Telegram Widget will be loaded here -->
+            <div class="waitlist-grid">
+                <div class="waitlist-column">
+                    <h3 class="column-title">Сообщество</h3>
+                    <div id="telegram-post-container"
+                        style="width: 100%; display: flex; justify-content: center; min-height: 200px;">
+                        <!-- Telegram Widget will be loaded here -->
+                    </div>
                 </div>
 
-                <p style="color: rgba(255,255,255,0.6); margin-bottom: 20px;">
-                    Оставь свою почту, чтобы получить уведомление когда приложение запустится.
-                </p>
+                <div class="waitlist-column">
+                    <h3 class="column-title">Подписка по email</h3>
+                    <p style="color: rgba(255,255,255,0.7); margin-bottom: 20px; font-size: 16px;">
+                        Оставь свою почту, чтобы получить уведомление когда приложение запустится.
+                    </p>
 
-                <form class="form-row" id="emailForm">
-                    <input type="email" class="input-email" id="emailInput" placeholder="Ваш email" required>
-                    <button type="submit" class="btn-submit">Подписаться</button>
-                </form>
+                    <form class="form-row" id="emailForm">
+                        <input type="email" class="input-email" id="emailInput" placeholder="Ваш email" required>
+                        <button type="submit" class="btn-submit">Подписаться</button>
+                    </form>
 
-                <div class="form-message" id="formMessage"></div>
+                    <div class="form-message" id="formMessage"></div>
+                </div>
             </div>
+
+            <footer class="footer">
+                &copy; 2024 Dreams Talk
+            </footer>
         </div>
     </section>
-
-    <footer class="footer">
-        <div class="container">
-            &copy; 2024 Dreams Talk
-        </div>
-    </footer>
 
     <script src="background.js"></script>
     <script src="script.js"></script>
