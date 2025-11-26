@@ -137,28 +137,26 @@ function showMessage(text, type) {
 }
 
 
-// Intersection Observer for fade-in animations - DISABLED to prevent flickering
-// const observerOptions = {
-//     threshold: 0.1,
-//     rootMargin: '0px 0px -100px 0px'
-// };
+// Intersection Observer for fade-in animations
+const observerOptions = {
+    threshold: 0.2,
+    rootMargin: '0px 0px -50px 0px'
+};
 
-// const observer = new IntersectionObserver((entries) => {
-//     entries.forEach(entry => {
-//         if (entry.isIntersecting) {
-//             entry.target.style.opacity = '1';
-//             entry.target.style.transform = 'translateY(0)';
-//         }
-//     });
-// }, observerOptions);
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target); // Only animate once
+        }
+    });
+}, observerOptions);
 
-// Observe sections for animation
-// document.querySelectorAll('.feature-card, .step-card').forEach(element => {
-//     element.style.opacity = '0';
-//     element.style.transform = 'translateY(30px)';
-//     element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-//     observer.observe(element);
-// });
+// Observe philosophy text
+const philosophyText = document.querySelector('.philosophy-text');
+if (philosophyText) {
+    observer.observe(philosophyText);
+}
 
 // Log page visit
 console.log('Dreams Talk - AI Dream Analysis');
