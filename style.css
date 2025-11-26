@@ -443,8 +443,8 @@ h1 {
 
 /* Philosophy */
 .philosophy {
-    align-items: center;
-    text-align: center;
+    align-items: flex-start;
+    text-align: left;
     overflow: hidden;
 }
 
@@ -457,7 +457,7 @@ h1 {
     line-height: 1.4;
     font-weight: 400;
     max-width: 900px;
-    margin: 0 auto 80px;
+    margin-bottom: 80px;
     position: relative;
     z-index: 2;
 }
@@ -553,20 +553,13 @@ h1 {
 
     0%,
     100% {
-        transform: translate(0, 0) scale(1) rotateY(0deg);
         opacity: 1;
         z-index: 3;
     }
 
-    33% {
-        transform: translate(-250px, -100px) scale(0.7) rotateY(-25deg);
-        opacity: 0.3;
-        z-index: 1;
-    }
-
+    33%,
     66% {
-        transform: translate(250px, -100px) scale(0.7) rotateY(25deg);
-        opacity: 0.3;
+        opacity: 0;
         z-index: 1;
     }
 }
@@ -574,64 +567,34 @@ h1 {
 @keyframes carouselRotate1 {
 
     0%,
+    66%,
     100% {
-        transform: translate(250px, -100px) scale(0.7) rotateY(25deg);
-        opacity: 0.3;
+        opacity: 0;
         z-index: 1;
     }
 
     33% {
-        transform: translate(0, 0) scale(1) rotateY(0deg);
         opacity: 1;
         z-index: 3;
-    }
-
-    66% {
-        transform: translate(-250px, -100px) scale(0.7) rotateY(-25deg);
-        opacity: 0.3;
-        z-index: 1;
     }
 }
 
 @keyframes carouselRotate2 {
 
     0%,
+    33%,
     100% {
-        transform: translate(-250px, -100px) scale(0.7) rotateY(-25deg);
-        opacity: 0.3;
-        z-index: 1;
-    }
-
-    33% {
-        transform: translate(250px, -100px) scale(0.7) rotateY(25deg);
-        opacity: 0.3;
+        opacity: 0;
         z-index: 1;
     }
 
     66% {
-        transform: translate(0, 0) scale(1) rotateY(0deg);
         opacity: 1;
         z-index: 3;
     }
 }
 
-/* Fade overlay */
-.animation-fade-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(to right,
-            rgba(5, 7, 11, 1) 0%,
-            rgba(5, 7, 11, 0.8) 15%,
-            rgba(5, 7, 11, 0) 35%,
-            rgba(5, 7, 11, 0) 65%,
-            rgba(5, 7, 11, 0.8) 85%,
-            rgba(5, 7, 11, 1) 100%);
-    pointer-events: none;
-    z-index: 2;
-}
+
 
 /* Mobile adjustments for Philosophy */
 @media (max-width: 900px) {
