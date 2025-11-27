@@ -549,6 +549,14 @@ h1 {
     z-index: 1;
 }
 
+.waitlist-screenshot {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
 .waitlist-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
