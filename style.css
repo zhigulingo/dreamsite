@@ -699,38 +699,38 @@ h1 {
     .phones-container {
         flex-direction: row;
         justify-content: center;
-        align-items: flex-end;
-        /* Align bottom of phones if needed, or center */
+        align-items: center;
+        /* Center vertically */
         gap: 0;
-        /* Overlap slightly or no gap to fit */
         margin: 40px auto;
         width: 100%;
-        overflow: hidden;
-        /* Allow phones to hang off edges if needed, but usually we want to see them */
+        overflow: visible;
+        /* Allow phones to extend beyond container if needed, parent handles overflow */
     }
 
     .phone {
-        width: 50vw;
-        /* Massive side phones */
-        max-width: 250px;
-        transform: translateX(20px) scale(0.9);
+        width: 56vw;
+        /* 80% of 70vw */
+        max-width: none;
+        transform: none;
+        /* Reset transforms */
         z-index: 1;
+        margin: 0;
+        /* Reset margins */
     }
 
     .phone.center {
         width: 70vw;
-        /* Massive center phone */
-        max-width: 350px;
-        margin-top: 0;
-        margin-left: -40px;
-        margin-right: -40px;
-        transform: none;
+        max-width: none;
         z-index: 10;
+        margin: 0 -15%;
+        /* Negative margin to pull sides in symmetrically */
+        transform: none;
     }
 
     .phone.side {
         margin-top: 60px;
-        /* Push sides down */
+        /* Push sides down visually */
     }
 
 
