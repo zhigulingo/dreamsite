@@ -296,6 +296,8 @@ h1 {
     color: white;
     text-decoration: none;
     cursor: default;
+    pointer-events: none;
+    /* FORCE non-clickable behavior including hover */
     backdrop-filter: blur(5px);
     vertical-align: middle;
     /* Align with text */
@@ -344,15 +346,15 @@ h1 {
 
 .btn-telegram {
     display: inline-block;
-    background: var(--btn-blue);
+    background: #6B5CE7;
     color: white;
     padding: 16px 36px;
     border-radius: 50px;
     font-size: 18px;
     text-decoration: none;
     font-weight: 500;
-    /* Тень у кнопки оставим, она нужна для кликабельности, или убрать тоже? Оставим пока легкую */
-    box-shadow: 0 10px 20px rgba(0, 113, 200, 0.2);
+    /* Updated shadow to match new purple color */
+    box-shadow: 0 10px 20px rgba(107, 92, 231, 0.3);
     transition: transform 0.2s;
     margin-bottom: 0;
     /* Margin moved to wrapper */
@@ -389,7 +391,7 @@ h1 {
 
 .btn-telegram:hover {
     transform: translateY(-2px);
-    background: #0080FF;
+    background: #5849C2;
 }
 
 /* Features */
