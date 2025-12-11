@@ -356,9 +356,15 @@ h1 {
     /* Тень у кнопки оставим, она нужна для кликабельности, или убрать тоже? Оставим пока легкую */
     box-shadow: 0 10px 20px rgba(0, 113, 200, 0.2);
     transition: transform 0.2s;
+    margin-bottom: 0;
+    /* Margin moved to wrapper */
+}
+
+.btn-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
     margin-bottom: 40px;
-    align-self: flex-start;
-    /* Выравнивание кнопки влево в flex-контейнере, если нужно */
 }
 
 /* Если Hero - это flex column, то align-self: flex-start выровняет кнопку влево. 
@@ -813,13 +819,13 @@ h1 {
         text-align: left;
     }
 
+    .btn-wrapper {
+        justify-content: center;
+    }
+
     .hero .btn-telegram {
-        position: relative;
-        left: 50%;
-        transform: translateX(-50%);
-        margin: 0 0 40px 0;
-        width: fit-content;
-        align-self: flex-start;
+        /* Clean state */
+        margin: 0;
     }
 
     .pill-btn {
