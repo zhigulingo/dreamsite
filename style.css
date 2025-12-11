@@ -879,3 +879,19 @@ h1 {
     }
 
 }
+/* Scroll Reveal Animation */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+    will-change: opacity, transform;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.reveal-delay-100 { transition-delay: 0.1s; }
+.reveal-delay-200 { transition-delay: 0.2s; }
+.reveal-delay-300 { transition-delay: 0.3s; }

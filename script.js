@@ -153,11 +153,30 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Observe philosophy text
-const philosophyText = document.querySelector('.philosophy-text');
-if (philosophyText) {
-    observer.observe(philosophyText);
-}
+// Observe elements for scroll reveal
+const revealSelectors = [
+    'h1',
+    '.section-title',
+    '.phones-container',
+    '.btn-wrapper',
+    '.feature-item',
+    '.dark-card',
+    '.waitlist-column',
+    '.philosophy-text',
+    '.footer'
+];
+
+const revealElements = document.querySelectorAll(revealSelectors.join(', '));
+
+revealElements.forEach((el, index) => {
+    // Add reveal class to hide initially and set transition
+    el.classList.add('reveal');
+
+    // Optional: Add simple stagger based on index or DOM order if siblings
+    // But for now, direct observation is fine.
+
+    observer.observe(el);
+});
 
 // Log page visit
 console.log('Dreams Talk - AI Dream Analysis');
