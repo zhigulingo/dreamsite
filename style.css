@@ -24,11 +24,6 @@ html {
     overflow-x: hidden;
     /* Revert overflow-y to default to fix layout issues */
     background-color: #0f1322;
-    /* Fallback color (top of site) to prevent white bars */
-    background-image: linear-gradient(to bottom, #0f1322 0%, #05070b 100%);
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size: cover;
 }
 
 body {
@@ -51,7 +46,9 @@ body {
     height: 100%;
     z-index: -1;
     pointer-events: none;
-    background: transparent;
+    pointer-events: none;
+    background: linear-gradient(to bottom, #0f1322 0%, #05070b 100%);
+    background-size: cover;
     /* Performance optimizations */
     transform: translateZ(0);
     -webkit-transform: translateZ(0);
@@ -879,6 +876,7 @@ h1 {
     }
 
 }
+
 /* Scroll Reveal Animation */
 .reveal {
     opacity: 0;
@@ -892,6 +890,14 @@ h1 {
     transform: translateY(0);
 }
 
-.reveal-delay-100 { transition-delay: 0.1s; }
-.reveal-delay-200 { transition-delay: 0.2s; }
-.reveal-delay-300 { transition-delay: 0.3s; }
+.reveal-delay-100 {
+    transition-delay: 0.1s;
+}
+
+.reveal-delay-200 {
+    transition-delay: 0.2s;
+}
+
+.reveal-delay-300 {
+    transition-delay: 0.3s;
+}
