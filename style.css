@@ -46,7 +46,6 @@ body {
     height: 120vh;
     z-index: -1;
     pointer-events: none;
-    pointer-events: none;
     background: linear-gradient(to bottom, #0f1322 0%, #05070b 100%);
     background-size: cover;
     /* Performance optimizations */
