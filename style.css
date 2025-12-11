@@ -826,8 +826,8 @@ h1 {
     }
 
     .waitlist-column {
-        align-items: center;
-        text-align: center;
+        align-items: flex-start;
+        text-align: left;
         padding: 30px 20px;
         overflow: hidden;
         /* Prevent content from spilling out */
