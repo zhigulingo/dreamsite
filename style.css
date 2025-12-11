@@ -22,8 +22,10 @@ html {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    /* Revert overflow-y to default to fix layout issues */
-    background-color: #05070b;
+    /* Prevent rubber-banding which reveals background gaps */
+    overscroll-behavior-y: none;
+    /* Transparent to let the fixed canvas show through everywhere */
+    background-color: transparent;
 }
 
 body {
@@ -35,6 +37,7 @@ body {
     color: var(--text-white);
     overflow-x: hidden;
     position: relative;
+    overscroll-behavior-y: none;
 }
 
 /* Canvas Background - Fixed & Extended for Overscroll */
