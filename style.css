@@ -813,6 +813,10 @@ h1 {
         text-align: left;
     }
 
+    .hero .btn-telegram {
+        align-self: center;
+    }
+
     .pill-btn {
         display: table;
         margin: 20px auto 0 auto;
