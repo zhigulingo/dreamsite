@@ -24,7 +24,7 @@ html {
     padding: 0;
     overflow-x: hidden;
     /* Static gradient fallback matching start/end colors, with black base for bottom overscroll */
-    background: #21193D linear-gradient(to bottom, #5E3EAB 0%, #21193D 100%) no-repeat;
+    background: #21193D linear-gradient(to bottom, #8958FC 0%, #21193D 100%) no-repeat;
 }
 
 body {
@@ -47,7 +47,7 @@ body {
     height: 140vh;
     z-index: -1;
     pointer-events: none;
-    background: linear-gradient(to bottom, #5E3EAB 0%, #5E3EAB 20%, #21193D 100%);
+    background: linear-gradient(to bottom, #8958FC 0%, #8958FC 20%, #21193D 100%);
     background-size: cover;
     /* Performance optimizations */
     transform: translateZ(0);
