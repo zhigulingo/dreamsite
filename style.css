@@ -703,11 +703,12 @@ h1 {
         /* Center vertically */
         gap: 0;
         margin: 40px auto;
-        width: 100%;
+        /* Break out of container padding to ensure true viewport centering */
+        width: 100vw;
+        margin-left: -20px;
         overflow: visible;
         /* Allow phones to extend beyond container if needed, parent handles overflow */
-        transform: translateX(-3%);
-        /* Visual correction for center alignment */
+        transform: none;
     }
 
     .phone {
