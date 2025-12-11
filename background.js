@@ -77,10 +77,9 @@
 
     function resize() {
         // Get actual canvas element size
-        const rect = canvas.getBoundingClientRect();
-        const w = Math.round(rect.width || window.innerWidth);
-        const h = Math.round(rect.height || window.innerHeight);
-        W = w; H = h;
+        // Use window dimensions directly for reliable full-screen coverage
+        W = window.innerWidth;
+        H = window.innerHeight;
         canvas.width = Math.round(W * dpr);
         canvas.height = Math.round(H * dpr);
 
