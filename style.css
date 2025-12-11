@@ -23,8 +23,8 @@ html {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    /* Static gradient fallback matching start/end colors */
-    background: linear-gradient(to bottom, #0f1322 0%, #05070b 100%) no-repeat;
+    /* Static gradient fallback matching start/end colors, with black base for bottom overscroll */
+    background: #05070b linear-gradient(to bottom, #0f1322 0%, #05070b 100%) no-repeat;
 }
 
 body {
