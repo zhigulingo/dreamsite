@@ -23,7 +23,7 @@ html {
     padding: 0;
     overflow-x: hidden;
     /* Revert overflow-y to default to fix layout issues */
-    background-color: #0f1322;
+    background-color: #05070b;
 }
 
 body {
@@ -40,10 +40,10 @@ body {
 /* Canvas Background - Fixed & Extended for Overscroll */
 #space {
     position: fixed;
-    top: -15vh;
+    top: 0;
     left: 0;
     width: 100vw;
-    height: 130vh;
+    height: 120vh;
     z-index: -1;
     pointer-events: none;
     pointer-events: none;
