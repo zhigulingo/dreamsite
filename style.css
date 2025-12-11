@@ -179,67 +179,65 @@ section {
     padding: 0;
 }
 
-.hamburger span {
-    display: block;
+/* Hamburger Icons */
+.hamburger svg {
     position: absolute;
-    width: 24px;
-    height: 2px;
-    background: white;
-    border-radius: 2px;
-    transition: all 0.3s ease-in-out;
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%);
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-.hamburger span:nth-child(1) {
-    top: 35%;
+.hamburger .icon-menu {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
 }
 
-.hamburger span:nth-child(2) {
-    top: 50%;
-    margin-top: -1px;
-    /* Center perfectly */
-}
-
-.hamburger span:nth-child(3) {
-    top: 65%;
-    margin-top: -2px;
-    /* Adjust for height from bottom */
-}
-
-.hamburger.active span:nth-child(1) {
-    top: 50%;
-    transform: translateX(-50%) rotate(45deg);
-}
-
-.hamburger.active span:nth-child(2) {
+.hamburger .icon-close {
     opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
 }
 
-.hamburger.active span:nth-child(3) {
-    top: 50%;
-    transform: translateX(-50%) rotate(-45deg);
+.hamburger.active .icon-menu {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+}
+
+.hamburger.active .icon-close {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
 }
 
 /* Old .mobile-menu removed, styles moved to .mobile-nav inside header */
 
 .mobile-nav {
-    display: none;
+    display: flex;
+    /* Always flex, just hidden */
     width: 100%;
     flex-direction: column;
     gap: 0;
-    padding-top: 20px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    margin-top: 15px;
+    padding-top: 0;
+    margin-top: 0;
+
+    /* Transition properties */
+    max-height: 0;
     opacity: 0;
+    overflow: hidden;
     transform: translateY(-10px);
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    transition: max-height 0.4s ease, opacity 0.4s ease, padding 0.4s ease, margin 0.4s ease, transform 0.4s ease;
+
+    /* Border handling to avoid double border when hidden */
+    border-top: 1px solid rgba(255, 255, 255, 0);
 }
 
 .header.active .mobile-nav {
-    display: flex;
+    max-height: 400px;
+    /* Arbitrary large height to fit content */
     opacity: 1;
     transform: translateY(0);
+    padding-top: 20px;
+    margin-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 
