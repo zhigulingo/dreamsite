@@ -706,6 +706,8 @@ h1 {
         width: 100%;
         overflow: visible;
         /* Allow phones to extend beyond container if needed, parent handles overflow */
+        transform: translateX(-3%);
+        /* Visual correction for center alignment */
     }
 
     .phone {
