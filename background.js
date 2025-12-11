@@ -189,7 +189,7 @@
     function paintBackground() {
         // глубокий космос
         const g = ctx.createRadialGradient(W * 0.5, -H * 0.08, 0, W * 0.5, -H * 0.08, Math.max(W, H) * 1.2);
-        g.addColorStop(0.00, '#0f1322'); g.addColorStop(0.45, '#0a0e1a'); g.addColorStop(1.00, '#05070b');
+        g.addColorStop(0.00, '#5E3EAB'); g.addColorStop(0.45, '#3F2B73'); g.addColorStop(1.00, '#21193D');
         ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
 
         // верхний фиолетовый «ореол» — ФИКСИРОВАННЫЙ, НЕ СКРОЛЛИТСЯ
