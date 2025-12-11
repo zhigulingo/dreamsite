@@ -814,8 +814,8 @@ h1 {
     }
 
     .pill-btn {
-        display: inline-block;
-        margin: 15px 0 0 0;
+        display: table;
+        margin: 20px auto 0 auto;
         font-size: 14px;
         padding: 8px 20px;
     }
