@@ -298,6 +298,7 @@ h1 {
     font-weight: 600;
     color: white;
     text-decoration: none;
+    cursor: default;
     backdrop-filter: blur(5px);
     vertical-align: middle;
     /* Align with text */
