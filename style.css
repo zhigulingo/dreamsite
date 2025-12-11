@@ -814,10 +814,12 @@ h1 {
     }
 
     .hero .btn-telegram {
-        align-self: center;
-        margin: 0 auto 40px auto;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        margin: 0 0 40px 0;
         width: fit-content;
-        display: block;
+        align-self: flex-start;
     }
 
     .pill-btn {
