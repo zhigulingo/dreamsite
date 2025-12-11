@@ -194,15 +194,7 @@
         g.addColorStop(1.00, '#21193D');
         ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
 
-        // верхний фиолетовый «ореол» — ФИКСИРОВАННЫЙ, НЕ СКРОЛЛИТСЯ
-        const cx = W * 0.5;
-        const cy = -H * 0.2; // Всегда сверху, не зависит от скролла
-        const r = Math.max(W, H) * 1.2;
-        const g2 = ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
-        g2.addColorStop(0.00, 'rgba(120,70,220,0.42)');
-        g2.addColorStop(0.35, 'rgba(90,55,160,0.26)');
-        g2.addColorStop(1.00, 'rgba(10,12,22,0)');
-        ctx.fillStyle = g2; ctx.fillRect(0, 0, W, H);
+
     }
 
     // тайловый отрисовщик offscreen-слоя с произвольным смещением
