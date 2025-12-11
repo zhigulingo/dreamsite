@@ -76,10 +76,9 @@
     }
 
     function resize() {
-        // Get actual canvas element size
-        // Use window dimensions directly for reliable full-screen coverage
-        W = window.innerWidth;
-        H = window.innerHeight;
+        // Use actual element size (determined by CSS) to ensure 1:1 mapping
+        W = canvas.clientWidth || window.innerWidth;
+        H = canvas.clientHeight || window.innerHeight;
         canvas.width = Math.round(W * dpr);
         canvas.height = Math.round(H * dpr);
 
