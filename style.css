@@ -153,7 +153,7 @@ section {
 }
 
 .btn-header {
-    background: var(--btn-purple);
+    background: #6c5ce7;
     color: white;
     padding: 10px 30px;
     border-radius: 30px;
@@ -261,7 +261,7 @@ section {
 }
 
 .mobile-nav-link.btn-mobile {
-    background: var(--btn-purple);
+    background: #6c5ce7;
     color: white;
     padding: 14px 24px;
     border-radius: 30px;
