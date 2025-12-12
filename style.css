@@ -155,16 +155,17 @@ section {
 
 .btn-header {
     background: #6B5CE7;
-    color: white;
+    color: rgba(255, 255, 255, 0.9);
     padding: 10px 30px;
     border-radius: 30px;
     text-decoration: none;
     font-weight: 500;
-    transition: opacity 0.3s;
+    transition: background 0.3s, color 0.3s;
 }
 
 .btn-header:hover {
-    opacity: 0.9;
+    background: #7D6FEB;
+    color: #ffffff;
 }
 
 /* Hamburger Menu */
@@ -367,15 +368,15 @@ h1 {
 
 .btn-telegram {
     display: inline-block;
-    background: #0088cc;
-    color: white;
+    background: #6B5CE7;
+    color: rgba(255, 255, 255, 0.9);
     padding: 16px 36px;
     border-radius: 50px;
     font-size: 18px;
     text-decoration: none;
     font-weight: 500;
-    box-shadow: 0 10px 20px rgba(0, 136, 204, 0.3);
-    transition: transform 0.2s;
+    box-shadow: 0 10px 20px rgba(107, 92, 231, 0.3);
+    transition: background 0.3s, color 0.3s, transform 0.2s;
     margin-bottom: 0;
 }
 
@@ -410,7 +411,8 @@ h1 {
 
 .btn-telegram:hover {
     transform: translateY(-2px);
-    background: #006699;
+    background: #7D6FEB;
+    color: #ffffff;
 }
 
 /* Features */
