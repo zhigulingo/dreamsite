@@ -283,11 +283,11 @@ section {
 .hero::before {
     content: '';
     position: absolute;
-    top: 0;
+    top: -20vh;
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(to bottom, #2D1F4E 0%, rgba(45, 31, 78, 0) 70%);
+    background: linear-gradient(to bottom, #2D1F4E 0%, #2D1F4E 15%, rgba(45, 31, 78, 0) 70%);
     z-index: 0;
     pointer-events: none;
 }
