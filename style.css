@@ -213,8 +213,8 @@ section {
 /* Old .mobile-menu removed, styles moved to .mobile-nav inside header */
 
 .mobile-nav {
-    display: flex;
-    /* Always flex, just hidden */
+    display: none;
+    /* Hidden on desktop, shown on mobile via media query */
     width: 100%;
     flex-direction: column;
     gap: 0;
@@ -777,6 +777,11 @@ h1 {
     .hamburger {
         display: flex !important;
         /* Show hamburger on mobile */
+    }
+
+    .mobile-nav {
+        display: flex;
+        /* Show mobile nav on mobile devices */
     }
 
     .philosophy-text {
