@@ -101,6 +101,7 @@ section {
     width: 90%;
     max-width: 1100px;
     display: flex;
+    flex-wrap: nowrap;
     justify-content: space-between;
     align-items: center;
     border: 1px solid rgba(255, 255, 255, 0.05);
@@ -124,6 +125,8 @@ section {
     color: white;
     font-size: 20px;
     font-weight: 300;
+    flex-shrink: 0;
+    white-space: nowrap;
 }
 
 .logo img {
