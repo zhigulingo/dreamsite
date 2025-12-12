@@ -104,7 +104,6 @@ section {
     flex-wrap: nowrap;
     justify-content: space-between;
     align-items: center;
-    gap: 40px;
     border: 1px solid rgba(255, 255, 255, 0.05);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
     /* Performance: GPU acceleration */
@@ -140,7 +139,6 @@ section {
     display: flex;
     gap: 40px;
     align-items: center;
-    margin-left: auto;
     flex-shrink: 0;
 }
 
