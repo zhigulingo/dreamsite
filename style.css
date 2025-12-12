@@ -47,8 +47,7 @@ body {
     height: 140vh;
     z-index: -1;
     pointer-events: none;
-    background: linear-gradient(to bottom, #2d1f4e 0%, #1a1a2e 50%, #0f0f1a 100%);
-    background-size: cover;
+    background: #1a1a2e;
     /* Performance optimizations */
     transform: translateZ(0);
     -webkit-transform: translateZ(0);
