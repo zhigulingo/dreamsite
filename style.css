@@ -137,6 +137,7 @@ section {
     gap: 40px;
     align-items: center;
     margin-left: auto;
+    flex-shrink: 0;
 }
 
 .nav a {
@@ -144,6 +145,7 @@ section {
     text-decoration: none;
     font-size: 16px;
     transition: color 0.3s;
+    white-space: nowrap;
 }
 
 .nav a:hover {
