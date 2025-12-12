@@ -24,7 +24,7 @@ html {
     padding: 0;
     overflow-x: hidden;
     /* Solid dark background */
-    background: #1a1a2e;
+    background: #2D1F4E;
 }
 
 body {
@@ -47,7 +47,7 @@ body {
     height: 140vh;
     z-index: -1;
     pointer-events: none;
-    background: #1a1a2e;
+    background: #2D1F4E;
     /* Performance optimizations */
     transform: translateZ(0);
     -webkit-transform: translateZ(0);
@@ -287,7 +287,7 @@ section {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(to bottom, #2D1F4E 0%, rgba(45, 31, 78, 0) 100%);
+    background: linear-gradient(to bottom, #2D1F4E 0%, rgba(45, 31, 78, 0) 70%);
     z-index: 0;
     pointer-events: none;
 }
