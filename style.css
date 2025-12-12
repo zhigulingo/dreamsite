@@ -23,8 +23,8 @@ html {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    /* Static gradient fallback matching start/end colors, with black base for bottom overscroll */
-    background: #21193D linear-gradient(to bottom, #8958FC 0%, #21193D 100%) no-repeat;
+    /* Static gradient fallback - darker gradient */
+    background: #1a1a2e linear-gradient(to bottom, #2d1f4e 0%, #1a1a2e 100%) no-repeat;
 }
 
 body {
@@ -47,7 +47,7 @@ body {
     height: 140vh;
     z-index: -1;
     pointer-events: none;
-    background: linear-gradient(to bottom, #8958FC 0%, #8958FC 20%, #21193D 100%);
+    background: linear-gradient(to bottom, #2d1f4e 0%, #1a1a2e 50%, #0f0f1a 100%);
     background-size: cover;
     /* Performance optimizations */
     transform: translateZ(0);
@@ -104,6 +104,7 @@ section {
     flex-wrap: nowrap;
     justify-content: space-between;
     align-items: center;
+    gap: 40px;
     border: 1px solid rgba(255, 255, 255, 0.05);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
     /* Performance: GPU acceleration */
