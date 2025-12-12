@@ -187,14 +187,9 @@
     }
 
     function paintBackground() {
-        // глубокий космос - линейный градиент для равномерного цвета сверху
-        const g = ctx.createLinearGradient(0, 0, 0, H);
-        g.addColorStop(0.00, '#8958FC');
-        g.addColorStop(0.20, '#8958FC');
-        g.addColorStop(1.00, '#21193D');
-        ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
-
-
+        // глубокий космос - однотонный цвет
+        ctx.fillStyle = '#2D1F4E';
+        ctx.fillRect(0, 0, W, H);
     }
 
     // тайловый отрисовщик offscreen-слоя с произвольным смещением
