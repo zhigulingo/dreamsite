@@ -23,8 +23,8 @@ html {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    /* Static gradient fallback - darker gradient */
-    background: #1a1a2e linear-gradient(to bottom, #2d1f4e 0%, #1a1a2e 100%) no-repeat;
+    /* Solid dark background */
+    background: #1a1a2e;
 }
 
 body {
